@@ -1,0 +1,192 @@
+.button{
+    margin:auto;
+    display:block;
+    width: 30%;
+    height: 10%;
+    background-color: #FFF8E7;
+    border: none;
+    font-size: 2.0em;
+    border-radius: 14px;
+    cursor: pointer;
+    outline:none;
+    font-family: "Times New Roman";
+}
+.button:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.button:focus {
+    background-color: rebeccapurple;
+    color: white;
+}
+
+.h1{
+    font-family: "Times New Roman";
+    font-size:5.0em;
+}
+
+.input{
+    margin:auto;
+    display:block;
+    text-align: center;
+    width: 30%;
+    height: 5%;
+    background-color: #FFF8E7;
+    border: none;
+    clear: left;
+
+}
+
+.select{
+    margin:auto;
+    display:block;
+    width: 30%;
+    height: 3%;
+    background-color: #FFF8E7;
+    border: none;
+}
+
+.center {
+    margin: auto;
+    display:block;
+    border: none;
+}
+.main-header{position:-webkit-sticky; position:sticky; top:0;}
+
+.nav ul {
+    list-style: none;
+    background-color: #444;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+.nav li {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2em;
+    line-height: 40px;
+    height: 40px;
+    border-bottom: 1px solid #888;
+}
+
+.nav a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    transition: .3s background-color;
+}
+
+.nav a:hover {
+    background-color: #005f5f;
+}
+
+.nav a.active {
+    background-color: #fff;
+    color: #444;
+    cursor: default;
+}
+
+@media screen and (min-width: 600px) {
+    .nav li {
+        width: 220px;
+        border-bottom: none;
+        height: 50px;
+        line-height: 50px;
+        font-size: 1.4em;
+    }
+
+    /* Option 1 - Display Inline */
+    .nav li {
+        display: inline-block;
+        margin-right: -4px;
+    }
+}
+
+/*.donate-now {
+    list-style-type:none;
+    margin:auto;
+    display: inline-block;
+
+    padding:0;
+}
+
+.donate-now li {
+    margin:auto;
+    display: inline-block;
+
+    float: left;
+}
+
+.donate-now label, .donate-now input {
+
+    margin:auto;
+    width: 40%;
+    height: 5%;
+
+}
+
+.donate-now label {
+    text-align: center;
+
+    background: #FFF8E7;
+    margin:auto;
+    display: inline-block;
+    padding-left: 100px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    padding-right:5px;
+    border:none;
+    cursor:pointer;
+}
+.donate-now input[type="radio"] {
+    opacity:0.011;
+}
+
+.donate-now label:hover {
+    background: green;
+}
+
+.donate-now input[type="radio"]:checked + label {
+    background:rebeccapurple;
+}*/
+
+
+
+#donate {
+    margin:auto;
+    width: 50%;
+}
+
+#donate label {
+    float:left;
+    width:30%;
+    margin:4px;
+    background-color: #FFF8E7;
+    border-radius:4px;
+    border:none;
+    overflow:auto;
+}
+
+#donate label span {
+    text-align:center;
+    font-size: 32px;
+    padding:13px 0px;
+    display:block;
+}
+
+#donate label input {
+    position:absolute;
+    top:-20px;
+}
+
+#donate input:checked + span {
+    background-color:rebeccapurple;
+    color:white;
+}
+
+#donate input:hover + span {
+    background-color:green;
+    color:white;
+}
+
+
