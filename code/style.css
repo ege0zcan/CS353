@@ -47,6 +47,7 @@
     background-color: #FFF8E7;
     border: none;
     word-break: break-word;
+    word-wrap: break-word;
     overflow: scroll;
 }
 
@@ -75,12 +76,19 @@
     clear: left;
 }
 
-
 .center {
     margin: auto;
     display:block;
     border: none;
 }
+
+.profile_pic {
+    height: 200px;
+    width: 200px;
+    background-color: powderblue;
+    margin:auto;
+}
+
 .main-header{position:-webkit-sticky; position:sticky; top:0;}
 
 .nav ul {
@@ -115,6 +123,41 @@
     cursor: default;
 }
 
+* {
+    box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+}
+
+.column4 {
+    float: left;
+    width: 25%;
+    padding: 10px;
+    height: 200px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+    .column4 {
+        width: 100%;
+    }
+}
+
 @media screen and (min-width: 600px) {
     .nav li {
         width: 240px;
@@ -130,6 +173,7 @@
         margin-right: -4px;
     }
 }
+
 
 /*.donate-now {
     list-style-type:none;
