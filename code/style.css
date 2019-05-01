@@ -35,7 +35,19 @@
     background-color: #FFF8E7;
     border: none;
     clear: left;
+    overflow: scroll;
+}
 
+.big_input{
+    margin:auto;
+    display:block;
+    text-align: center;
+    width: 30%;
+    height: 10%;
+    background-color: #FFF8E7;
+    border: none;
+    word-break: break-word;
+    overflow: scroll;
 }
 
 .select{
@@ -46,6 +58,23 @@
     background-color: #FFF8E7;
     border: none;
 }
+
+.label {
+    display: block;
+    line-height: 150%;
+    font-size: 1em;
+}
+.textarea{
+    margin:auto;
+    display:block;
+    text-align: left;
+    width: 30%;
+    height: 5%;
+    background-color: #FFF8E7;
+    border: none;
+    clear: left;
+}
+
 
 .center {
     margin: auto;
@@ -188,5 +217,4 @@
     background-color:green;
     color:white;
 }
-
 
