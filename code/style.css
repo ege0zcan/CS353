@@ -89,6 +89,28 @@
     margin:auto;
 }
 
+.pagination {
+    display: inline-block;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
 .main-header{position:-webkit-sticky; position:sticky; top:0;}
 
 .nav ul {
@@ -134,6 +156,7 @@
     padding: 10px;
 }
 
+
 .column4 {
     float: left;
     width: 25%;
@@ -153,6 +176,7 @@
     .column {
         width: 100%;
     }
+
     .column4 {
         width: 100%;
     }
