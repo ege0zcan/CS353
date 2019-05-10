@@ -54,6 +54,7 @@ public class connection {
                 "apartment_no VARCHAR(32) DEFAULT NULL," +
                 "street VARCHAR(32) DEFAULT NULL," +
                 "city VARCHAR(32) DEFAULT NULL," +
+                "country VARCHAR(32) DEFAULT NULL,"+
                 "zipcode VARCHAR(32) DEFAULT NULL," +
                 "PRIMARY KEY(user_ID)" +
                 ")engine=InnoDB;"
