@@ -65,7 +65,6 @@ public class connection {
                 "FOREIGN KEY(user_ID) REFERENCES general_user(user_ID)\n " +
                 "ON DELETE CASCADE," +
                 "company_name VARCHAR(32) NOT NULL UNIQUE," +
-                "comp_locations VARCHAR(32) DEFAULT NULL, " +
                 "description VARCHAR(128) DEFAULT NULL," +
                 "primary key (user_ID)" +
                 ")engine=InnoDB;"
@@ -79,6 +78,16 @@ public class connection {
                 "experience VARCHAR(128) DEFAULT NULL," +
                 "saved_interests VARCHAR(128) DEFAULT NULL," +
                 "primary key (user_ID)" +
+                ")engine=InnoDB;"
+        );
+        statement.executeUpdate("CREATE TABLE location(" +
+                "comp_ID INT," +
+                "apartment_no VARCHAR(32) DEFAULT NULL," +
+                "street VARCHAR(32) DEFAULT NULL," +
+                "city VARCHAR(32) DEFAULT NULL," +
+                "country VARCHAR(32) DEFAULT NULL,"+
+                "zipcode VARCHAR(32) DEFAULT NULL," +
+                "primary key( apartment_no, street, city, country, zipcode )"+
                 ")engine=InnoDB;"
         );
 
