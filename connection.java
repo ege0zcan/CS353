@@ -74,6 +74,7 @@ public class connection {
                 "user_ID INT," +
                 "FOREIGN KEY(user_ID) REFERENCES general_user(user_ID)\n" +
                 "ON DELETE CASCADE," +
+                "name VARCHAR(32) NOT NULL," + 
                 "background_info VARCHAR(128) DEFAULT NULL," +
                 "experience VARCHAR(128) DEFAULT NULL," +
                 "saved_interests VARCHAR(128) DEFAULT NULL," +
