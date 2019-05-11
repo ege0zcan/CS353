@@ -37,7 +37,7 @@ public class connection {
         statement.executeUpdate("drop table if exists application_test;");
         statement.executeUpdate("drop table if exists posts;");
         statement.executeUpdate("drop table if exists job_offering;");
-        statement.executeUpdate("drop table if exists locations;");
+        statement.executeUpdate("drop table if exists location;");
         statement.executeUpdate("drop table if exists has_pic;");
         statement.executeUpdate("drop table if exists picture;");
         statement.executeUpdate("drop table if exists follows;");
@@ -51,7 +51,7 @@ public class connection {
                 "password VARCHAR(32) NOT NULL, " +
                 "phone_no VARCHAR(32) NOT NULL UNIQUE," +
                 "reg_date DATETIME DEFAULT CURRENT_TIMESTAMP, " +
-                "pp_link VARCHAR(32) DEFAULT NULL," +
+                "pp_link VARCHAR(128) DEFAULT NULL," +
                 "apartment_no VARCHAR(32) DEFAULT NULL," +
                 "street VARCHAR(32) DEFAULT NULL," +
                 "city VARCHAR(32) DEFAULT NULL," +
@@ -74,7 +74,7 @@ public class connection {
                 "user_ID INT," +
                 "FOREIGN KEY(user_ID) REFERENCES general_user(user_ID)\n" +
                 "ON DELETE CASCADE," +
-                "name VARCHAR(32) NOT NULL," + 
+                "name VARCHAR(32) NOT NULL," +
                 "background_info VARCHAR(128) DEFAULT NULL," +
                 "experience VARCHAR(128) DEFAULT NULL," +
                 "saved_interests VARCHAR(128) DEFAULT NULL," +
