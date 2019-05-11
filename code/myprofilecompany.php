@@ -1,10 +1,12 @@
+
 <?php
 include("config.php");
 session_start();
 if (!empty($_SESSION))
 {
+    $_SESSION["jobID"] = "";
     $userID = $_SESSION["userID"];
-    $sql = "SELECT *FROM comp_user NATURAL JOIN general_user WHERE user_ID = '$userID'";
+    $sql = "SELECT * FROM comp_user NATURAL JOIN general_user WHERE user_ID = '$userID'";
     $result = mysqli_query($db,$sql);
     $compUser = mysqli_fetch_object($result);
     $name = $compUser->company_name;
@@ -19,6 +21,10 @@ else
 }
 
 ?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://sorgalla.com/jcarousel/dist/jquery.jcarousel.min.js?raw=1"></script>
+<link rel="stylesheet" type="text/css" href="jcarousel.responsive.css">
+<script type="text/javascript" src="jcarousel.responsive.js"></script>
 <html>
 <head>
     <link rel="stylesheet" href="style.css">
@@ -29,9 +35,9 @@ else
 <header class="main-header">
     <div class="nav">
         <ul>
-            <li><a href="home">Home</a></li>
-            <li><a  href="#">Create Job</a></li>
-            <li><a href="#">My Jobs</a></li>
+            <li><a href="home.php">Home</a></li>
+            <li><a  href="createjob.php">Create Job</a></li>
+            <li><a href="myjobscompany.php">My Jobs</a></li>
             <li><a class="active" href="#">My Profile</a></li>
         </ul>
     </div>
@@ -84,18 +90,27 @@ else
         </p>
 
         <h2>Photos</h2>
-        <div class="row">
-            <div class="column4" style="background-color:#ebb;">
-                <h2>Photo 1</h2>
-            </div>
-            <div class="column4" style="background-color:#bbb;">
-                <h2>Photo 2</h2>
-            </div>
-            <div class="column4" style="background-color:#ccc;">
-                <h2>Photo 3</h2>
-            </div>
-            <div class="column4" style="background-color:#ddd;">
-                <h2>Photo 4</h2>
+        <div class="wrapper">
+
+            <div class="jcarousel-wrapper">
+                <div class="jcarousel">
+                    <ul>
+                        <?php
+                             $picSql = "SELECT * FROM picture WHERE user_ID = '$userID'";
+                             $result3 = mysqli_query($db,$picSql);
+                             while($pic = mysqli_fetch_object($result3)){
+                               $link = $pic->link;
+                               $picDesc = $pic->description;
+                               echo("<li><img src='$link' alt=$picDesc></li>");
+                             }
+                        ?>
+                    </ul>
+                </div>
+
+                <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+                <p class="jcarousel-pagination"></p>
             </div>
         </div>
 
