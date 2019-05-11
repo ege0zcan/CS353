@@ -16,6 +16,7 @@
         $apt_no = $workUser->apartment_no;
         $street = $workUser->street;
         $city = $workUser->city;
+        $state = $workUser->state;
         $country = $workUser->country;
         $zipcode = $workUser->zipcode;
         $email = $workUser->email;
@@ -80,7 +81,7 @@
         <h3>Phone</h3>
         <p><?php echo $phone?></p>
         <h3>Addres</h3>
-        <p><?php echo $apt_no," ", $street, " ", $city," ", $country, " ", $zipcode ?> </p>
+        <p><?php echo $apt_no," ", $street, " ", $city," ",$state," ", $country, " ", $zipcode ?> </p>
         <a href="https://www.w3schools.com/html/">Edit</a>
     </div>
 </div>
