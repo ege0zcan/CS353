@@ -16,11 +16,16 @@ public class connection {
             System.out.println("Connected!!");
             statement = conn.createStatement();
             createTables();
+            addEntries();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    private static void addEntries() throws SQLException{
+        statement.executeUpdate("insert into general_user values(1,\"tam35@mail.com\",\"1234\",\"3535353535\",DEFAULT,\"http://img7.bdbphotos.com/images/huge/w/d/wdd4fqg0265zzg60.jpg?djet1p5k\",\"Orman Apt\",\"Hikmet Sokak\",\"Izmir\",\"Turkey\",123)");
+        statement.executeUpdate("insert into work_user values(1,\"Robert Plant\", \"Musician\", \"Led Zeppelin\", \"Jumping\");  ");
 
+    }
     private static void createTables() throws SQLException {
 
         statement.executeUpdate("drop table if exists checks;");
