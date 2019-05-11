@@ -96,7 +96,7 @@ public class connection {
                 "apartment_no VARCHAR(32) DEFAULT NULL," +
                 "street VARCHAR(32) DEFAULT NULL," +
                 "city VARCHAR(32) DEFAULT NULL," +
-                "state VARCHAR(32) DEFAULT NULL" +
+                "state VARCHAR(32) DEFAULT NULL," +
                 "country VARCHAR(32) DEFAULT NULL,"+
                 "zipcode VARCHAR(32) DEFAULT NULL," +
                 "mainLocation TINYINT DEFAULT NULL," +
@@ -220,7 +220,7 @@ public class connection {
                 "job_type VARCHAR(32) DEFAULT NULL," +
                 "office_location VARCHAR(32) NOT NULL," +
                 "details VARCHAR(128) DEFAULT NULL," +
-                "PRIMARY KEY(job_title,job_type,office_location)" +
+                "PRIMARY KEY(offering_id)" +
                 ")engine=InnoDB;"
         );
         statement.executeUpdate("CREATE TABLE application_test(" +
