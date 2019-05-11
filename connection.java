@@ -116,7 +116,7 @@ public class connection {
         );
         statement.executeUpdate("CREATE TABLE picture(" +
                 "user_ID INT ," +
-                "FOREIGN KEY(user_ID) REFERENCES work_user(user_ID)\n" +
+                "FOREIGN KEY(user_ID) REFERENCES comp_user(user_ID)\n" +
                 "ON DELETE CASCADE," +
                 "link VARCHAR(32) NOT NULL, " +
                 "date DATETIME DEFAULT CURRENT_TIMESTAMP," +
