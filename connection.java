@@ -37,6 +37,7 @@ public class connection {
         statement.executeUpdate("drop table if exists application_test;");
         statement.executeUpdate("drop table if exists posts;");
         statement.executeUpdate("drop table if exists job_offering;");
+        statement.executeUpdate("drop table if exists locations;");
         statement.executeUpdate("drop table if exists has_pic;");
         statement.executeUpdate("drop table if exists picture;");
         statement.executeUpdate("drop table if exists follows;");
