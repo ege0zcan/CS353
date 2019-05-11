@@ -10,8 +10,8 @@
 <form>
 
     <div id="donate">
-        <label style="width:15%"></label>
-        <label ><input type="radio" name="toggle" id="employeeCheck" onclick="yesnoCheck();"required><span>Employee</span></label>
+        <label style="width:18%"></label>
+        <label ><input type="radio" name="toggle" id="employeeCheck" onclick="yesnoCheck();" checked="checked" required><span>Employee</span></label>
         <label><input type="radio" name="toggle" id="employerCheck" onclick="yesnoCheck();"><span>Employer</span></label>
     </div>
 
@@ -45,10 +45,10 @@
     <input class="input" type="number" placeholder="Enter Zipcode" min="1" name="zipcode" id="zip" style="display:none"required>
     <br id="br3" style="display:none">
 
-    <input class="input" type="text" placeholder="Enter Name" name="name" id="name" style="display:none" required>
-    <br id="br4" style="display:none">
-    <input class="input" type="text" placeholder="Enter Surname" name="surname" id="surname" style="display:none"required>
-    <br id="br5" style="display:none">
+    <input class="input" type="text" placeholder="Enter Name" name="name" id="name" style="display:block" required>
+    <br id="br4" style="display:block">
+    <input class="input" type="text" placeholder="Enter Surname" name="surname" id="surname" style="display:block"required>
+    <br id="br5" style="display:block">
 
 
     <button type="submit" class="button">Register</button>
