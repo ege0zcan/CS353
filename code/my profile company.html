@@ -1,8 +1,15 @@
 <html>
+
 <head>
     <link rel="stylesheet" href="style.css">
     <title>My Profile</title>
 </head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://sorgalla.com/jcarousel/dist/jquery.jcarousel.min.js?raw=1"></script>
+<link rel="stylesheet" type="text/css" href="jcarousel.responsive.css">
+<script type="text/javascript" src="jcarousel.responsive.js"></script>
+
 
 <body style="background-color:#FF6F61;">
 <header class="main-header">
@@ -35,6 +42,34 @@
         <p>Some text..</p>
 
         <h2>Photos</h2>
+
+        <div class="wrapper">
+            <h1>Responsive Carousel</h1>
+
+
+            <p>This example shows how to implement a responsive carousel. Resize the browser window to see the effect.</p>
+
+            <div class="jcarousel-wrapper">
+                <div class="jcarousel">
+                    <ul>
+                        <li><img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="Image 1"></li>
+                        <li><img src="https://cdn.pixabay.com/photo/2015/03/26/09/54/pug-690566_1280.jpg" alt="Image 2"></li>
+                        <li><img src="https://cdn.pixabay.com/photo/2015/03/26/09/54/pug-690566_1280.jpg" alt="Image 3"></li>
+                        <li><img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000"></li>
+                        <li><img src="https://cdn.pixabay.com/photo/2015/03/26/09/54/pug-690566_1280.jpg" alt="Image 5"></li>
+                        <li><img src="https://cdn.pixabay.com/photo/2015/03/26/09/54/pug-690566_1280.jpg" alt="Image 6"></li>
+                    </ul>
+                </div>
+
+                <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+
+                <p class="jcarousel-pagination"></p>
+            </div>
+        </div>
+        <!--<a href="#" class="jcarousel-control-prev">&lsaquo;</a>-->
+        <!--<a href="#" class="jcarousel-control-next">&rsaquo;</a>-->
+
         <div class="row">
             <div class="column4" style="background-color:#ebb;">
                 <h2>Photo 1</h2>
