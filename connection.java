@@ -22,12 +22,12 @@ public class connection {
         }
     }
     private static void addEntries() throws SQLException{
-        statement.executeUpdate("insert into general_user values(1,\"tam35@mail.com\",\"1234\",\"3535353535\",DEFAULT,\"http://img7.bdbphotos.com/images/huge/w/d/wdd4fqg0265zzg60.jpg?djet1p5k\",\"Orman Apt\",\"Hikmet Sokak\",\"Izmir\",\"Turkey\",3535);");
-        statement.executeUpdate("insert into work_user values(1,\"Robert Plant\", \"Musician\", \"Led Zeppelin\", \"Jumping\");  ");
-        statement.executeUpdate("insert into general_user values(2,\"50cent@mail.com\",\"1234\",\"353523515\",DEFAULT,\"https://static.hiphopdx.com/2017/11/171128-G-Unit-Getty-Images-800x600.jpg\",\"gangsta Apt\",\"palmiye Sokak\",\"Izmir\",\"Turkey\",16241);");
+        statement.executeUpdate("insert into general_user values(1,\"tam35@mail.com\",\"1234\",\"3535353535\",DEFAULT,\"http://img7.bdbphotos.com/images/huge/w/d/wdd4fqg0265zzg60.jpg?djet1p5k\");");
+        statement.executeUpdate("insert into work_user values(1,\"Robert Plant\", \"Musician\", \"Led Zeppelin\", \"Jumping\",\"loy Apt\",\"moy Sokak\",\"Izmir\",\"Turkey\",35121);");
+        statement.executeUpdate("insert into general_user values(2,\"50cent@mail.com\",\"1234\",\"353523515\",DEFAULT,\"https://static.hiphopdx.com/2017/11/171128-G-Unit-Getty-Images-800x600.jpg\");");
         statement.executeUpdate("insert into comp_user values(2,\"G-Unit\", \"RAPPER\");");
-        statement.executeUpdate("insert into location values(2,\"gangsta Apt\",\"palmiye Sokak\",\"Izmir\",\"Turkey\",16241);");
-        statement.executeUpdate("insert into location values(2,\"tren Apt\",\"lider Sokak\",\"tokyo\",\"Japon\",12451);");
+        statement.executeUpdate("insert into location values(2,\"gangsta Apt\",\"palmiye Sokak\",\"Izmir\",\"Turkey\",16241,1);");
+        statement.executeUpdate("insert into location values(2,\"tren Apt\",\"lider Sokak\",\"tokyo\",\"Japon\",12451,0);");
 
     }
     private static void createTables() throws SQLException {
@@ -82,6 +82,11 @@ public class connection {
                 "background_info VARCHAR(128) DEFAULT NULL," +
                 "experience VARCHAR(128) DEFAULT NULL," +
                 "saved_interests VARCHAR(128) DEFAULT NULL," +
+                "apartment_no VARCHAR(32) DEFAULT NULL," +
+                "street VARCHAR(32) DEFAULT NULL," +
+                "city VARCHAR(32) DEFAULT NULL," +
+                "country VARCHAR(32) DEFAULT NULL,"+
+                "zipcode VARCHAR(32) DEFAULT NULL,"+
                 "primary key (user_ID)" +
                 ")engine=InnoDB;"
         );
@@ -92,6 +97,7 @@ public class connection {
                 "city VARCHAR(32) DEFAULT NULL," +
                 "country VARCHAR(32) DEFAULT NULL,"+
                 "zipcode VARCHAR(32) DEFAULT NULL," +
+                "mainLocation TINYINT DEFAULT NULL," +
                 "primary key( apartment_no, street, city, country, zipcode )"+
                 ")engine=InnoDB;"
         );
