@@ -61,11 +61,6 @@ public class connection {
                 "phone_no VARCHAR(32) NOT NULL UNIQUE," +
                 "reg_date DATETIME DEFAULT CURRENT_TIMESTAMP, " +
                 "pp_link VARCHAR(128) DEFAULT NULL," +
-                "apartment_no VARCHAR(32) DEFAULT NULL," +
-                "street VARCHAR(32) DEFAULT NULL," +
-                "city VARCHAR(32) DEFAULT NULL," +
-                "country VARCHAR(32) DEFAULT NULL,"+
-                "zipcode VARCHAR(32) DEFAULT NULL," +
                 "PRIMARY KEY(user_ID)" +
                 ")engine=InnoDB;"
         );
