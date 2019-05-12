@@ -28,6 +28,18 @@ public class connection {
         statement.executeUpdate("insert into comp_user values(2,\"G-Unit\", \"RAPPER\");");
         statement.executeUpdate("insert into location values(2,\"gangsta Apt\",\"palmiye Sokak\",\"balcova\",\"Izmir\",\"Turkey\",16241,1);");
         statement.executeUpdate("insert into location values(2,\"tren Apt\",\"lider Sokak\",\"yoa chi\",\"tokyo\",\"Japon\",12451,0);");
+        //picture
+        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/0/5616/3744\",DEFAULT,\"Müthiş foto\");");
+        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/1/5616/3744\",DEFAULT,\"Müthiş foto\");");
+        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/25/5616/3744\",DEFAULT,\"Müthiş foto\");");
+        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/11/5616/3744\",DEFAULT,\"Müthiş foto\");");
+        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/4/5616/3744\",DEFAULT,\"Müthiş foto\");");
+        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/5/5616/3744\",DEFAULT,\"Müthiş foto\");");
+        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/6/5616/3744\",DEFAULT,\"Müthiş foto\");");
+        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/7/5616/3744\",DEFAULT,\"Müthiş foto\");");
+        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/8/5616/3744\",DEFAULT,\"Müthiş foto\");");
+        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/9/5616/3744\",DEFAULT,\"Müthiş foto\");");
+        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/10/5616/3744\",DEFAULT,\"Müthiş foto\");");
 
     }
     private static void createTables() throws SQLException {
@@ -116,9 +128,9 @@ public class connection {
         );
         statement.executeUpdate("CREATE TABLE picture(" +
                 "user_ID INT ," +
-                "FOREIGN KEY(user_ID) REFERENCES work_user(user_ID)\n" +
+                "FOREIGN KEY(user_ID) REFERENCES comp_user(user_ID)\n" +
                 "ON DELETE CASCADE," +
-                "link VARCHAR(32) NOT NULL, " +
+                "link VARCHAR(128) NOT NULL, " +
                 "date DATETIME DEFAULT CURRENT_TIMESTAMP," +
                 "description VARCHAR(128) DEFAULT NULL," +
                 "PRIMARY KEY (user_ID, link)" +
