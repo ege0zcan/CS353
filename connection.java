@@ -16,32 +16,11 @@ public class connection {
             System.out.println("Connected!!");
             statement = conn.createStatement();
             createTables();
-            addEntries();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    private static void addEntries() throws SQLException{
-        statement.executeUpdate("insert into general_user values(1,\"tam35@mail.com\",\"1234\",\"3535353535\",DEFAULT,\"http://img7.bdbphotos.com/images/huge/w/d/wdd4fqg0265zzg60.jpg?djet1p5k\");");
-        statement.executeUpdate("insert into work_user values(1,\"Robert Plant\", \"Musician\", \"Led Zeppelin\", \"Jumping\",\"loy Apt\",\"moy Sokak\",\"Goztepe\",\"Izmir\",\"Turkey\",35121);");
-        statement.executeUpdate("insert into general_user values(2,\"50cent@mail.com\",\"1234\",\"353523515\",DEFAULT,\"https://static.hiphopdx.com/2017/11/171128-G-Unit-Getty-Images-800x600.jpg\");");
-        statement.executeUpdate("insert into comp_user values(2,\"G-Unit\", \"RAPPER\");");
-        statement.executeUpdate("insert into location values(2,\"gangsta Apt\",\"palmiye Sokak\",\"balcova\",\"Izmir\",\"Turkey\",16241,1);");
-        statement.executeUpdate("insert into location values(2,\"tren Apt\",\"lider Sokak\",\"yoa chi\",\"tokyo\",\"Japon\",12451,0);");
-        //picture
-        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/0/5616/3744\",DEFAULT,\"Müthiş foto\");");
-        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/1/5616/3744\",DEFAULT,\"Müthiş foto\");");
-        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/25/5616/3744\",DEFAULT,\"Müthiş foto\");");
-        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/11/5616/3744\",DEFAULT,\"Müthiş foto\");");
-        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/4/5616/3744\",DEFAULT,\"Müthiş foto\");");
-        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/5/5616/3744\",DEFAULT,\"Müthiş foto\");");
-        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/6/5616/3744\",DEFAULT,\"Müthiş foto\");");
-        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/7/5616/3744\",DEFAULT,\"Müthiş foto\");");
-        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/8/5616/3744\",DEFAULT,\"Müthiş foto\");");
-        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/9/5616/3744\",DEFAULT,\"Müthiş foto\");");
-        statement.executeUpdate("insert into picture values(2,\"https://picsum.photos/id/10/5616/3744\",DEFAULT,\"Müthiş foto\");");
 
-    }
     private static void createTables() throws SQLException {
 
         statement.executeUpdate("drop table if exists checks;");
@@ -58,7 +37,6 @@ public class connection {
         statement.executeUpdate("drop table if exists application_test;");
         statement.executeUpdate("drop table if exists posts;");
         statement.executeUpdate("drop table if exists job_offering;");
-        statement.executeUpdate("drop table if exists location;");
         statement.executeUpdate("drop table if exists has_pic;");
         statement.executeUpdate("drop table if exists picture;");
         statement.executeUpdate("drop table if exists follows;");
@@ -72,7 +50,12 @@ public class connection {
                 "password VARCHAR(32) NOT NULL, " +
                 "phone_no VARCHAR(32) NOT NULL UNIQUE," +
                 "reg_date DATETIME DEFAULT CURRENT_TIMESTAMP, " +
-                "pp_link VARCHAR(128) DEFAULT NULL," +
+                "pp_link VARCHAR(32) DEFAULT NULL," +
+                "apartment_no VARCHAR(32) DEFAULT NULL," +
+                "street VARCHAR(32) DEFAULT NULL," +
+                "city VARCHAR(32) DEFAULT NULL," +
+                "country VARCHAR(32) DEFAULT NULL,"+
+                "zipcode VARCHAR(32) DEFAULT NULL," +
                 "PRIMARY KEY(user_ID)" +
                 ")engine=InnoDB;"
         );
@@ -94,12 +77,6 @@ public class connection {
                 "background_info VARCHAR(128) DEFAULT NULL," +
                 "experience VARCHAR(128) DEFAULT NULL," +
                 "saved_interests VARCHAR(128) DEFAULT NULL," +
-                "apartment_no VARCHAR(32) DEFAULT NULL," +
-                "street VARCHAR(32) DEFAULT NULL," +
-                "city VARCHAR(32) DEFAULT NULL," +
-                "state VARCHAR(32) DEFAULT NULL," +
-                "country VARCHAR(32) DEFAULT NULL,"+
-                "zipcode VARCHAR(32) DEFAULT NULL,"+
                 "primary key (user_ID)" +
                 ")engine=InnoDB;"
         );
@@ -108,11 +85,9 @@ public class connection {
                 "apartment_no VARCHAR(32) DEFAULT NULL," +
                 "street VARCHAR(32) DEFAULT NULL," +
                 "city VARCHAR(32) DEFAULT NULL," +
-                "state VARCHAR(32) DEFAULT NULL," +
                 "country VARCHAR(32) DEFAULT NULL,"+
                 "zipcode VARCHAR(32) DEFAULT NULL," +
-                "mainLocation TINYINT DEFAULT NULL," +
-                "primary key( apartment_no, street, city, state, country, zipcode )"+
+                "primary key( apartment_no, street, city, country, zipcode )"+
                 ")engine=InnoDB;"
         );
 
@@ -128,9 +103,9 @@ public class connection {
         );
         statement.executeUpdate("CREATE TABLE picture(" +
                 "user_ID INT ," +
-                "FOREIGN KEY(user_ID) REFERENCES comp_user(user_ID)\n" +
+                "FOREIGN KEY(user_ID) REFERENCES work_user(user_ID)\n" +
                 "ON DELETE CASCADE," +
-                "link VARCHAR(128) NOT NULL, " +
+                "link VARCHAR(32) NOT NULL, " +
                 "date DATETIME DEFAULT CURRENT_TIMESTAMP," +
                 "description VARCHAR(128) DEFAULT NULL," +
                 "PRIMARY KEY (user_ID, link)" +
