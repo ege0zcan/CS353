@@ -52,12 +52,30 @@
             <div class="jcarousel-wrapper">
                 <div class="jcarousel">
                     <ul>
-                        <li><img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="Image 1"></li>
-                        <li><img src="https://cdn.pixabay.com/photo/2015/03/26/09/54/pug-690566_1280.jpg" alt="Image 2"></li>
-                        <li><img src="https://cdn.pixabay.com/photo/2015/03/26/09/54/pug-690566_1280.jpg" alt="Image 3"></li>
-                        <li><img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000"></li>
-                        <li><img src="https://cdn.pixabay.com/photo/2015/03/26/09/54/pug-690566_1280.jpg" alt="Image 5"></li>
-                        <li><img src="https://cdn.pixabay.com/photo/2015/03/26/09/54/pug-690566_1280.jpg" alt="Image 6"></li>
+                        <li>
+                            <figure>
+                                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="First Image" onclick="newModal(this)" >
+                                <figcaption>First Image</figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure>
+                                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="Second Image" onclick="newModal(this)" >
+                                <figcaption>Second Image</figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure>
+                                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="Third Image" onclick="newModal(this)" >
+                                <figcaption>Third Image</figcaption>
+                            </figure>
+                        </li>
+                        <li>
+                            <figure>
+                                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="Fourth Image" onclick="newModal(this)" >
+                                <figcaption>Fourth Image</figcaption>
+                            </figure>
+                        </li>
                     </ul>
                 </div>
 
@@ -70,20 +88,20 @@
         <!--<a href="#" class="jcarousel-control-prev">&lsaquo;</a>-->
         <!--<a href="#" class="jcarousel-control-next">&rsaquo;</a>-->
 
-        <div class="row">
-            <div class="column4" style="background-color:#ebb;">
-                <h2>Photo 1</h2>
-            </div>
-            <div class="column4" style="background-color:#bbb;">
-                <h2>Photo 2</h2>
-            </div>
-            <div class="column4" style="background-color:#ccc;">
-                <h2>Photo 3</h2>
-            </div>
-            <div class="column4" style="background-color:#ddd;">
-                <h2>Photo 4</h2>
-            </div>
-        </div>
+        <!--<div class="row">-->
+            <!--<div class="column4" style="background-color:#ebb;">-->
+                <!--<h2>Photo 1</h2>-->
+            <!--</div>-->
+            <!--<div class="column4" style="background-color:#bbb;">-->
+                <!--<h2>Photo 2</h2>-->
+            <!--</div>-->
+            <!--<div class="column4" style="background-color:#ccc;">-->
+                <!--<h2>Photo 3</h2>-->
+            <!--</div>-->
+            <!--<div class="column4" style="background-color:#ddd;">-->
+                <!--<h2>Photo 4</h2>-->
+            <!--</div>-->
+        <!--</div>-->
 
     </div>
 
@@ -98,6 +116,19 @@
     </div>
 </div>
 
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- The Close Button -->
+    <span class="close">&times;</span>
+
+    <!-- Modal Content (The Image) -->
+    <img class="modal-content" id="img01">
+
+    <!-- Modal Caption (Image Text) -->
+    <div id="caption"></div>
+</div>
 
 </body>
 </html>
