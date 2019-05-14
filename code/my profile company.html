@@ -1,17 +1,15 @@
 <html>
-
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://sorgalla.com/jcarousel/dist/jquery.jcarousel.min.js?raw=1"></script>
+    <script type="text/javascript" src="jcarousel.responsive.js"></script>
+
     <title>My Profile</title>
 </head>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="https://sorgalla.com/jcarousel/dist/jquery.jcarousel.min.js?raw=1"></script>
-<link rel="stylesheet" type="text/css" href="jcarousel.responsive.css">
-<script type="text/javascript" src="jcarousel.responsive.js"></script>
-
-
-<body style="background-color:#FF6F61;">
+<body style="background-color:#dddfd4;">
 <header class="main-header">
     <div class="nav">
         <ul>
@@ -25,7 +23,7 @@
 
 <br>
 <div class="profile_pic">
-    <img class="profile_pic" src="https://cdn.pixabay.com/photo/2015/03/26/09/54/pug-690566_1280.jpg">
+    <img class="profile_pic" src="panda.jpg">
 </div>
 <div style="text-align:center">
     <a href="https://www.w3schools.com/html/">Update Picture</a>
@@ -33,89 +31,60 @@
 <br>
 
 <div class="row">
-    <div class="column" style="background-color:#aaa;">
+    <div class="column"  style="margin-left:15%">
 
-        <h2 style="display: inline-block;padding-right: 15px;">Description</h2><a href="https://www.w3schools.com/html/">Edit</a>
-        <p>Some text..</p>
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Description</h2><a href="https://www.w3schools.com/html/" class="edit">Edit</a>
+        <p style="margin-left: 3%;">Some text..</p>
 
-        <h2 style="display: inline-block;padding-right: 31px;">Locations</h2><a  href="https://www.w3schools.com/html/">Edit</a>
-        <p>Some text..</p>
-
-        <h2>Photos</h2>
-
-        <div class="wrapper">
-            <h1>Responsive Carousel</h1>
-
-
-            <p>This example shows how to implement a responsive carousel. Resize the browser window to see the effect.</p>
-
-            <div class="jcarousel-wrapper">
-                <div class="jcarousel">
-                    <ul>
-                        <li>
-                            <figure>
-                                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="First Image" onclick="newModal(this)" >
-                                <figcaption>First Image</figcaption>
-                            </figure>
-                        </li>
-                        <li>
-                            <figure>
-                                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="Second Image" onclick="newModal(this)" >
-                                <figcaption>Second Image</figcaption>
-                            </figure>
-                        </li>
-                        <li>
-                            <figure>
-                                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="Third Image" onclick="newModal(this)" >
-                                <figcaption>Third Image</figcaption>
-                            </figure>
-                        </li>
-                        <li>
-                            <figure>
-                                <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="Fourth Image" onclick="newModal(this)" >
-                                <figcaption>Fourth Image</figcaption>
-                            </figure>
-                        </li>
-                    </ul>
-                </div>
-
-                <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
-                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
-
-                <p class="jcarousel-pagination"></p>
-            </div>
-        </div>
-        <!--<a href="#" class="jcarousel-control-prev">&lsaquo;</a>-->
-        <!--<a href="#" class="jcarousel-control-next">&rsaquo;</a>-->
-
-        <!--<div class="row">-->
-            <!--<div class="column4" style="background-color:#ebb;">-->
-                <!--<h2>Photo 1</h2>-->
-            <!--</div>-->
-            <!--<div class="column4" style="background-color:#bbb;">-->
-                <!--<h2>Photo 2</h2>-->
-            <!--</div>-->
-            <!--<div class="column4" style="background-color:#ccc;">-->
-                <!--<h2>Photo 3</h2>-->
-            <!--</div>-->
-            <!--<div class="column4" style="background-color:#ddd;">-->
-                <!--<h2>Photo 4</h2>-->
-            <!--</div>-->
-        <!--</div>-->
-
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Locations</h2><a  href="https://www.w3schools.com/html/" class="edit">Edit</a>
+        <p style="margin-left: 3%;">Some text..</p>
     </div>
 
-    <div class="column" style="background-color:#bbb;">
-        <h2>Contact Information</h2>
-        <p>Bu arkaplan rengi grileri silcem sonra</p>
-        <h3>Email</h3>
-        <h3>Phone</h3>
-        <h3>Addres</h3>
-        <p>Mahalle sokak apartman </p>
-        <a href="https://www.w3schools.com/html/">Edit</a>
+    <div class="column" style="margin-left:15%">
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Contact Information</h2>
+        <p style="margin-left: 3%;">Bu arkaplan rengi grileri silcem sonra</p>
+        <h3>Email</h3> <br />
+        <h3>Phone</h3> <br />
+        <h3>Addres</h3> <a href="https://www.w3schools.com/html/" class="edit">Edit</a>
+        <p style="margin-left: 3%;">Mahalle sokak apartman </p>
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Photos</h2>
+        <div class="jcarousel-wrapper">
+            <div class="jcarousel">
+                <ul>
+                    <li>
+                        <figure>
+                            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="First Image" onclick="newModal(this)" >
+                            <figcaption>First Image</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="Second Image" onclick="newModal(this)" >
+                            <figcaption>Second Image</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="Third Image" onclick="newModal(this)" >
+                            <figcaption>Third Image</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="Fourth Image" onclick="newModal(this)" >
+                            <figcaption>Fourth Image</figcaption>
+                        </figure>
+                    </li>
+                </ul>
+            </div>
+
+            <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+            <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+            <p class="jcarousel-pagination"></p>
+
+        </div>
     </div>
 </div>
-
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -129,7 +98,6 @@
     <!-- Modal Caption (Image Text) -->
     <div id="caption"></div>
 </div>
-
 </body>
 </html>
 

@@ -1,10 +1,11 @@
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>My Profile</title>
 </head>
 
-<body style="background-color:#FF6F61;">
+<body style="background-color:#dddfd4;">
 <header class="main-header">
     <div class="nav">
         <ul>
@@ -19,7 +20,7 @@
 
 <br>
 <div class="profile_pic">
-    <img class="profile_pic" src="<?php echo $pplink; ?>">
+    <img class="profile_pic" src="panda.jpg">
 
 </div>
 <div style="text-align:center">
@@ -31,29 +32,27 @@
 <br>
 
 <div class="row">
-    <div class="column" style="background-color:#aaa;">
+    <div class="column" style=" height: 600px; margin-left:15%">
 
-        <h2 style="display: inline-block;padding-right: 15px;">Background Information</h2><a href="https://www.w3schools.com/html/">Edit</a>
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Background Information</h2><a href="https://www.w3schools.com/html/" class="edit">Edit</a>
         <p><?php echo $backInfo?> </p>
 
-        <h2 style="display: inline-block;padding-right: 31px;">Experience</h2><a  href="https://www.w3schools.com/html/">Edit</a>
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Experience</h2><a  href="https://www.w3schools.com/html/" class="edit">Edit</a>
         <p><?php echo $exp?></p>
 
-        <h2 style="display: inline-block;padding-right: 31px;">Interests</h2><a  href="https://www.w3schools.com/html/">Edit</a>
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Interests</h2><a  href="https://www.w3schools.com/html/" class="edit">Edit</a>
         <p><?php echo $interests?></p>
 
-    </div>
-
-    <div class="column" style="background-color:#bbb;">
-        <h2>Contact Information</h2>
+         <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Contact Information</h2> <br />
         <h3>Email</h3>
         <p> <?php echo $email?></p>
         <h3>Phone</h3>
         <p><?php echo $phone?></p>
-        <h3>Addres</h3>
+        <h3>Addres</h3> <a href="https://www.w3schools.com/html/" class="edit">Edit</a>
         <p><?php echo $apt_no," ", $street, " ", $city," ", $country, " ", $zipcode ?> </p>
-        <a href="https://www.w3schools.com/html/">Edit</a>
+
     </div>
+
 </div>
 
 
