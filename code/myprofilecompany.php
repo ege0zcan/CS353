@@ -21,17 +21,21 @@ else
 }
 
 ?>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-<script src="https://sorgalla.com/jcarousel/dist/jquery.jcarousel.min.js?raw=1"></script>
-<link rel="stylesheet" type="text/css" href="jcarousel.responsive.css">
-<script type="text/javascript" src="jcarousel.responsive.js"></script>
+
+/////////////////////////////////////////////////////
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://sorgalla.com/jcarousel/dist/jquery.jcarousel.min.js?raw=1"></script>
+    <script type="text/javascript" src="jcarousel.responsive.js"></script>
+
     <title>My Profile</title>
 </head>
 
-<body style="background-color:#FF6F61;">
+<body style="background-color:#dddfd4;">
+
 <header class="main-header">
     <div class="nav">
         <ul>
@@ -44,7 +48,7 @@ else
 </header>
 
 <br>
-<div class="profile_pic">
+<div style="text-align:center" class="profile_pic">
     <img class="profile_pic" src="<?php echo $pplink; ?>">
 </div>
 <div style="text-align:center">
@@ -56,79 +60,70 @@ else
 <br>
 
 <div class="row">
-    <div class="column" style="background-color:#aaa;">
+    <div class="column"  style="margin-left:15%">
 
-        <h2 style="display: inline-block;padding-right: 15px;">Description</h2><a href="https://www.w3schools.com/html/">Edit</a>
-        <p><?php echo $desc?></p>
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Description</h2><a href="https://www.w3schools.com/html/" class="edit">Edit</a>
+        <p style="margin-left: 3%;"><?php echo $desc?></p>
 
-        <h2 style="display: inline-block;padding-right: 31px;">Locations</h2><a  href="https://www.w3schools.com/html/">Edit</a>
-        <p>
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Locations</h2><a  href="https://www.w3schools.com/html/" class="edit">Edit</a>
             <?php
-                $locationSql = "SELECT * FROM location WHERE comp_ID = '$userID'";
-                $result2 = mysqli_query($db,$locationSql);
-                    while($location = mysqli_fetch_object($result2)){
-                        $apt_no = $location->apartment_no;
-                        $street = $location->street;
-                        $city = $location->city;
-                        $state = $location->state;
-                        $country = $location->country;
-                        $zipcode = $location->zipcode;
-                        if( $main = $location->mainLocation == 1){
-                            $mainApt = $apt_no;
-                            $mainStreet = $street;
-                            $mainCity = $city;
-                            $mainState = $state;
-                            $mainCountry = $country;
-                            $mainZipcode = $zipcode;
-                            echo("<p> Headquarter $apt_no $street $city $state $country  $zipcode</p>");
-                        }else {
-                            echo("<p> $apt_no $street $city $state $country  $zipcode </p>");
-                        }
-                    }
-
+            $locationSql = "SELECT * FROM location WHERE comp_ID = '$userID'";
+            $result2 = mysqli_query($db,$locationSql);
+            while($location = mysqli_fetch_object($result2)){
+                $apt_no = $location->apartment_no;
+                $street = $location->street;
+                $city = $location->city;
+                $state = $location->state;
+                $country = $location->country;
+                $zipcode = $location->zipcode;
+                if( $main = $location->mainLocation == 1){
+                    $mainApt = $apt_no;
+                    $mainStreet = $street;
+                    $mainCity = $city;
+                    $mainState = $state;
+                    $mainCountry = $country;
+                    $mainZipcode = $zipcode;
+                    echo("<p style=\"margin-left: 3%;\"> Headquarter $apt_no $street $city $state $country  $zipcode</p>");
+                }else {
+                    echo("<p style=\"margin-left: 3%;\"> $apt_no $street $city $state $country  $zipcode </p>");
+                }
+            }
             ?>
-        </p>
-
-        <h2>Photos</h2>
-        <div class="wrapper">
-
-            <div class="jcarousel-wrapper">
-                <div class="jcarousel">
-                    <ul>
-                        <?php
-                             $picSql = "SELECT * FROM picture WHERE user_ID = '$userID'";
-                             $result3 = mysqli_query($db,$picSql);
-                             while($pic = mysqli_fetch_object($result3)){
-                               $link = $pic->link;
-                               $picDesc = $pic->description;
-                               echo("<li><figure><img src='$link' alt=$picDesc onclick=\"newModal(this)\">");
-                               echo("<figcaption> $picDesc </figcaption></figure></li>");
-                             }
-                        ?>
-                    </ul>
-                </div>
-
-                <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
-                <a href="#" class="jcarousel-control-next">&rsaquo;</a>
-
-                <p class="jcarousel-pagination"></p>
-            </div>
-        </div>
-
     </div>
-
-    <div class="column" style="background-color:#bbb;">
-        <h2>Contact Information</h2>
+    <div class="column" style="margin-left:15%">
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Contact Information</h2><br />
         <h3>Email</h3>
-        <p><?php echo $email?></p>
+        <p style="margin-left: 3%;"><?php echo $email?></p>
         <h3>Phone</h3>
-        <p><?php echo $phone?></p>
-        <h3>Addres</h3>
-        <p><?php echo $mainApt," ", $mainStreet, " ", $mainCity," ", $mainCountry, " ", $mainZipcode ?> </p>
-        <a href="https://www.w3schools.com/html/">Edit</a>
+        <p style="margin-left: 3%;"><?php echo $phone?></p>
+        <h3>Addres</h3> <a href="https://www.w3schools.com/html/" class="edit">Edit</a>
+        <p style="margin-left: 3%;"><?php echo $mainApt," ", $mainStreet, " ", $mainCity," ", $mainCountry, " ", $mainZipcode ?> </p>
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Photos</h2>
+        <div class="jcarousel-wrapper">
+            <div class="jcarousel">
+                <ul>
+                    <?php
+                    $picSql = "SELECT * FROM picture WHERE user_ID = '$userID'";
+                    $result3 = mysqli_query($db,$picSql);
+                    while($pic = mysqli_fetch_object($result3)){
+                        $link = $pic->link;
+                        $picDesc = $pic->description;
+                        echo("<li><figure><img src='$link' alt=$picDesc onclick=\"newModal(this)\">");
+                        echo("<figcaption> $picDesc </figcaption></figure></li>");
+                    }
+                    ?>
+                </ul>
+            </div>
+
+            <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+            <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+            <p class="jcarousel-pagination"></p>
+
+        </div>
     </div>
 </div>
 
+<!-- The Modal -->
 <div id="myModal" class="modal">
 
     <!-- The Close Button -->
