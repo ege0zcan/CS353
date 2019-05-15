@@ -1,0 +1,673 @@
+@import "css/materialize.css";
+.button{
+    margin:auto;
+    display:block;
+    width: 15%;
+    height: 70px;
+    background-color: #3fb0ac;
+    border: none;
+    transition: all 0.3s ease 0s;
+    font-size: 1.5em;
+    border-radius: 8px;
+    cursor: pointer;
+    outline:none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: #fff;
+}
+.button:hover {
+    background-color: #FF6F61;
+    box-shadow: 0 8px 10px rgba(0,0,0,0.3);
+    color: white;
+}
+
+.button:focus {
+    background-color: rebeccapurple;
+    color: white;
+}
+
+h1{
+    font-family: 'Roboto', sans-serif;
+    font-size: 4.0em;
+    font-weight: 900;
+    color: #173e43;
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: #173e43;
+}
+
+h3 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.0em;
+    font-weight: 500;
+    color: #173e43;
+    display: inline-block;
+    margin-left: 3%;
+    padding-right: 15px;"
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.85);
+    width: 90%;
+    margin-top: 0px;
+    margin-bottom: 20px;
+}
+
+.create {
+    font-family: 'Roboto', sans-serif;
+    font-size: 3.0em;
+    font-weight: 900;
+    color: #173e43;
+    margin-top: 40px;
+}
+
+.input{
+    margin:auto;
+    padding: 10px;
+    display:block;
+    width: 40%;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    clear: left;
+    overflow: scroll;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.0em;
+    text-align: left;
+}
+
+.big_input{
+    margin:auto;
+    padding: 10px;
+    display:block;
+    width: 40%;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    word-break: break-word;
+    word-wrap: break-word;
+    overflow: scroll;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.0em;
+    text-align: left;
+}
+
+.select{
+    margin:auto;
+    display:block;
+    width: 30%;
+    height: 3%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+}
+
+label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.0em;
+    font-weight: 300;
+    color: rgba(0,0,0,0.7);
+    display: block;
+    line-height: 20px;
+}
+.textarea{
+    margin:auto;
+    display:block;
+    text-align: left;
+    width: 30%;
+    height: 5%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    clear: left;
+}
+
+.center {
+    margin: auto;
+    display:block;
+    border: none;
+}
+
+.profile_pic {
+    height: 200px;
+    width: 200px;
+    margin:20px auto;
+}
+
+.pagination {
+    display: inline-block;
+    margin: 0;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #b3c2bf;
+    border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+.main-header{position:-webkit-sticky; position:sticky; top:0; z-index: 999;
+}
+
+.nav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: #444;
+    z-index: 999;
+    margin: 0;
+}
+
+.nav ul {
+    z-index: 999;
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 0;
+}
+.nav li {
+    z-index: 999;
+    display: inline;
+    padding: 0 20px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: 300;
+}
+
+.nav a {
+    z-index: 999;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    display: block;
+    transition: .3s background-color;
+
+}
+
+a {
+    text-decoration: none;
+    color: #FF6F61;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    display: block;
+    transition: .3s background-color;
+}
+
+.edit {
+    display: inline-block;
+    color: rgba(0, 0, 0, 0.50);
+}
+
+.nav a:hover {
+    background-color: #005f5f;
+}
+
+.nav a.active {
+    background-color: #6ed3cf;
+    color: #fff;
+    cursor: default;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 72%;
+    height: auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.column1 {
+    float: left;
+    padding: 10px;
+    background-color: transparent;
+}
+
+.column4 {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    height: 235px;
+    margin-right: 20px;
+    margin-left: 3%;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+.column4 a {
+    text-decoration: none;
+    color: rgba(0,0,0, 0.6);
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    display: block;
+    transition: .3s
+}
+
+.column4 a:hover {
+    color:#3fb0ac;
+
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+
+    .column4 {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .nav li {
+        width: 240px;
+        border-bottom: none;
+        height: 50px;
+        line-height: 50px;
+        font-size: 1.4em;
+    }
+
+    /* Option 1 - Display Inline */
+    .nav li {
+        display: inline-block;
+        margin-right: -4px;
+    }
+}
+
+
+#donate {
+    margin:auto;
+    width: 40%;
+}
+
+#donate label {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius:4px;
+    border:none;
+    width:auto;
+    overflow:auto;
+    float: left;
+    margin:14px;
+}
+
+#donate label span {
+    margin: auto;
+    text-align:center;
+    font-size: 24px;
+    padding: 13px 10px;
+    display:block;
+}
+
+#donate label input {
+    position:absolute;
+    top:-20px;
+}
+
+#donate input:checked + span {
+    background-color:rebeccapurple;
+    color:white;
+}
+
+#donate input:hover + span {
+    background-color:#bcd5d1;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 110px;
+    height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #FF6F61;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #6ed3cf;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(75px);
+    -ms-transform: translateX(75px);
+    transform: translateX(75px);
+}
+
+/*------ ADDED CSS ---------*/
+.on
+{
+    display: none;
+}
+
+.on, .off
+{
+    color: white;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    font-size: 10px;
+    font-family: Roboto, sans-serif;
+}
+
+input:checked+ .slider .on
+{display: block;}
+
+input:checked + .slider .off
+{display: none;}
+
+/*--------- END --------*/
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;}
+.rate {
+    float: right;
+    height: 46px;
+    padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: "\2605";
+}
+.rate > input:checked ~ label {
+    color: #ffc700;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.jcarousel-wrapper {
+    margin: 20px auto;
+    position: relative;
+    border: 10px solid #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 2px #999;
+    -moz-box-shadow: 0 0 2px #999;
+    box-shadow: 0 0 2px #999;
+}
+
+/** Carousel **/
+
+.jcarousel {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.jcarousel ul {
+    width: 10000em;
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.jcarousel li {
+    width: 100px;
+    float: left;
+    border: 1px solid #fff;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.jcarousel img {
+    display: block;
+    max-width: 100%;
+    height: auto !important;
+}
+
+/** Carousel Controls **/
+
+.jcarousel-control-prev,
+.jcarousel-control-next {
+    position: absolute;
+    top: 50%;
+    margin-top: -15px;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    background: #4E443C;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 0 1px #000;
+    font: 24px/27px Arial, sans-serif;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    border-radius: 30px;
+    -webkit-box-shadow: 0 0 4px #F0EFE7;
+    -moz-box-shadow: 0 0 4px #F0EFE7;
+    box-shadow: 0 0 4px #F0EFE7;
+}
+
+.jcarousel-control-prev {
+    left: 15px;
+}
+
+.jcarousel-control-next {
+    right: 15px;
+}
+
+/** Carousel Pagination **/
+
+.jcarousel-pagination {
+    position: absolute;
+    bottom: -40px;
+    left: 92%;
+    -webkit-transform: translate(-50%, 0);
+    -ms-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+    margin: 0;
+}
+
+.jcarousel-pagination a {
+    text-decoration: none;
+    display: inline-block;
+
+    font-size: 11px;
+    height: 10px;
+    width: 10px;
+    line-height: 10px;
+
+    background: #fff;
+    color: #4E443C;
+    border-radius: 10px;
+    text-indent: -9999px;
+
+    margin-right: 7px;
+
+
+    -webkit-box-shadow: 0 0 2px #4E443C;
+    -moz-box-shadow: 0 0 2px #4E443C;
+    box-shadow: 0 0 2px #4E443C;
+}
+
+.jcarousel-pagination a.active {
+    background: #4E443C;
+    color: #fff;
+    opacity: 1;
+
+    -webkit-box-shadow: 0 0 2px #F0EFE7;
+    -moz-box-shadow: 0 0 2px #F0EFE7;
+    box-shadow: 0 0 2px #F0EFE7;
+}
+
+figure {
+    display: inline-block;
+    border: 1px solid blue;
+    margin: 20px; /* adjust as needed */
+}
+figure img {
+    vertical-align: top;
+    cursor: pointer;
+
+}
+figure figcaption {
+    text-align: center;
+}
+
+/* Style the Image Used to Trigger the Modal */
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image (Image Text) - Same Width as the Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation - Zoom in the Modal */
+.modal-content, #caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
