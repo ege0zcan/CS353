@@ -44,17 +44,19 @@
     <title>Login</title>
 </head>
 
-<body style="background-color:#FF6F61;">
+<body style="background-color:#dddfd4;">
     <br>
-    <h1 style="text-align:center;" >Glass Ceiling</h1>
+    <h1 style="text-align:center;" onclick="location.href='http://google.com.tr';" >GLASS CEILING</h1>
     <br><br><br>
     <form action="" method="post">
         <br>
-        <input type="email" class="input" id="email" placeholder="E-mail" name="email">
+        <input type="email" class="input" id="email" placeholder="Enter Email" name="email" required>
         <br>
-        <input type="password" class="input" id="password" placeholder="Password" name="password">
+        <input type="password" class="input" id="password" placeholder="Enter Password" name="password">
         <br>
         <button type="submit" name="input" class="button">Login</button>
     </form>
 </body>
 </html>
+<html>
+

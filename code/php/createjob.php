@@ -31,13 +31,16 @@ $error = "Your Login Name or Password is invalid";
 
 
 ?>
+
+
 <html>
 <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Create Job</title>
 </head>
 
-<body style="background-color:#FF6F61;">
+<body style="background-color:#dddfd4;">
 <header class="main-header">
     <div class="nav">
         <ul>
@@ -50,31 +53,21 @@ $error = "Your Login Name or Password is invalid";
 </header>
 
 <br>
-<h1 style="text-align: center">Create Job</h1>
-
-<form style="text-align:center;">
-
+<h1 class="create" style="text-align: center">CREATE JOB</h1>
+<form action="" method="post" style="text-align:center;">
     <br>
-    <form action="" method="post">
-        <label for="title">Job Title</label>
-        <input class="input" type="text" placeholder="Enter Job Title" id="title" name ="title" required>
-        <br>
-        <label class="label" for="title">Job Description</label>
-        <input class="big_input" type="text" placeholder="Enter Job Description" id="description" name = "description" required>
-        <br>
-        <label for="title">Job Type</label>
-        <input class="input" type="text" placeholder="Enter Job Type" id="type" name ="type" required>
-        <br>
-        <label class="label" for="title">Job Location</label>
-        <input class="input" type="text" placeholder="Enter Job Location" id="location" name= "location"required>
-        <br>
-
-        <label class="label" for="title">Job Department</label>
-        <input class="input" type="text" placeholder="Enter Job Department" id="department"  name= "department" required>
-        <br>
-        <button type="submit" name= "post" class="button">Publish</button>
-    </form>
+    <input class="input" type="text" placeholder="Enter Job Title" id="title" required>
+    <br>
+    <input class="big_input" type="text" placeholder="Enter Job Description" id="description" required>
+    <br>
+    <input class="input" type="text" placeholder="Enter Job Type" id="type" name ="type" required>
+    <br>
+    <input class="input" type="text" placeholder="Enter Job Location" id="location" required>
+    <br>
+    <input class="input" type="text" placeholder="Enter Job Department" id="department" required>
+    <br>
+    <button type="submit" name="post" class="button">Publish</button>
+</form>
 
 </body>
 </html>
-
