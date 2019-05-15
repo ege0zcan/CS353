@@ -1,0 +1,101 @@
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://sorgalla.com/jcarousel/dist/jquery.jcarousel.min.js?raw=1"></script>
+    <script type="text/javascript" src="jcarousel.responsive.js"></script>
+
+    <title>Company Profile</title>
+</head>
+
+<body style="background-color:#dddfd4;">
+<header class="main-header">
+    <div class="nav">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Job Search</a></li>
+            <li><a class="active" href="#">Company Search</a></li>
+            <li><a href="#">My Applications</a></li>
+            <li><a href="#">My Profile</a></li>
+        </ul>
+    </div>
+</header>
+
+<br>
+<div class="profile_pic">
+    <img class="profile_pic" src="panda.jpg">
+</div>
+<br>
+
+<div class="row">
+    <div class="column"  style="margin-left:15%">
+
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Description</h2>
+        <p style="margin-left: 3%;">Some text..</p>
+
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Locations</h2>
+        <p style="margin-left: 3%;">Some text..</p>
+    </div>
+
+    <div class="column" style="margin-left:15%">
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Contact Information</h2>
+        <p style="margin-left: 3%;">Bu arkaplan rengi grileri silcem sonra</p>
+        <h3>Email</h3> <br />
+        <h3>Phone</h3> <br />
+        <h3>Addres</h3>
+        <p style="margin-left: 3%;">Mahalle sokak apartman </p>
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Photos</h2>
+        <div class="jcarousel-wrapper">
+            <div class="jcarousel">
+                <ul>
+                    <li>
+                        <figure>
+                            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="First Image" onclick="newModal(this)" >
+                            <figcaption>First Image</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="Second Image" onclick="newModal(this)" >
+                            <figcaption>Second Image</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="Third Image" onclick="newModal(this)" >
+                            <figcaption>Third Image</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5900/5900920_sd.jpg;maxHeight=1000;maxWidth=1000" alt="Fourth Image" onclick="newModal(this)" >
+                            <figcaption>Fourth Image</figcaption>
+                        </figure>
+                    </li>
+                </ul>
+            </div>
+
+            <a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+            <a href="#" class="jcarousel-control-next">&rsaquo;</a>
+            <p class="jcarousel-pagination"></p>
+
+        </div>
+    </div>
+</div>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+    <!-- The Close Button -->
+    <span class="close">&times;</span>
+
+    <!-- Modal Content (The Image) -->
+    <img class="modal-content" id="img01">
+
+    <!-- Modal Caption (Image Text) -->
+    <div id="caption"></div>
+</div>
+</body>
+</html>
+
