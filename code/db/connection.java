@@ -162,6 +162,8 @@ public class connection {
                 "interview_info VARCHAR(32) DEFAULT NULL," +
                 "salary_info VARCHAR(32) DEFAULT NULL," +
                 "office_location VARCHAR(32) DEFAULT NULL," +
+                "user_id VARCHAR(32) DEFAULT NULL," +
+                "comp_id VARCHAR(32) DEFAULT NULL," +
                 "date DATETIME DEFAULT CURRENT_TIMESTAMP, " +
                 //check( type in(“Full Time”, “Part Time”, “Internship”, “Interview”))
                 "PRIMARY KEY (review_id)" +
