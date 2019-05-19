@@ -61,26 +61,6 @@ else
             });
         });
     </script>
-    <script>
-        $(document).ready(function () {
-            $('#location').typeahead({
-                source: function (query, result) {
-                    $.ajax({
-                        url: "bar_locSearch.php",
-                        data: 'query=' + query,
-                        dataType: "json",
-                        type: "POST",
-                        success: function (data) {
-                            result($.map(data, function (item) {
-                                console.log(item);
-                                return item;
-                            }));
-                        }
-                    });
-                }
-            });
-        });
-    </script>
 
 
 
@@ -93,11 +73,11 @@ else
 <header class="main-header">
     <div class="nav">
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Job Search</a></li>
+            <li><a href="home.php">Home</a></li>
+            <li><a href="searchjob.php">Job Search</a></li>
             <li><a class="active" href="#">Company Search</a></li>
-            <li><a href="#">My Applications</a></li>
-            <li><a href="#">My Profile</a></li>
+            <li><a href="myapplications.php">My Applications</a></li>
+            <li><a href="myprofilework.php">My Profile</a></li>
         </ul>
     </div>
 </header>
@@ -106,7 +86,6 @@ else
 
 
     <input class="input" style="display: inline-block;width: 15%;margin-left: 3%;" type="text" placeholder="Company Name" name="companyName" id="companyName" >
-    <input class="input" style="display: inline-block;width: 15%;margin-left: 3%;" type="text" placeholder="Location" name="location" >
     <button type="submit" class="button" style="display: inline-block; height: 50px; margin-left: 0px; ; background-color: transparent; box-shadow:none; color: #173e43; ">Search</button>
 </form>
 
@@ -198,3 +177,4 @@ else
 </div>
 </body>
 </html>
+
