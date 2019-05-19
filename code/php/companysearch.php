@@ -4,38 +4,49 @@ session_start();
 if (!empty($_SESSION))
 {
     $userID = $_SESSION["userID"];
-    if($_SERVER["REQUEST_METHOD"] == "POST")
-    {
-        $ceoR = $_POST["rate"];
-        $ceo2 = $_POST["rate2"];
-        $reviewT = $_POST["rtype"];
-        if(isset($_POST['checkbox'])){
-            $anon = $_POST["checkbox"];
-        }
-        else {
-            $anon ='off';
-        }
-        echo $ceoR;
-        echo $ceo2;
-        echo $reviewT;
-        echo $anon;
-
-    }else{
-        echo "olmadı ki";
-    }
 }
 else
 {
     header("location: home.php");
 }
 
+if($_SESSION["companyName"] == NULL ){
+    $disable = "disabled=disabled";
+    $companyName = "PLEASE SELECT A COMPANY..";
+}
+else{
+    $companyName = $_SESSION["companyName"];
+    $disable = $_SESSION["disable"];
+    $compID = $_SESSION["compID"];
+}
+
+if($_SERVER["REQUEST_METHOD"] == "POST" )
+{
+
+    $compR = $_POST["rate"];
+    $ceoR = $_POST["rate2"];
+    $reviewT = $_POST["rtype"];
+    if(isset($_POST['checkbox'])){
+        $anon = $_POST["checkbox"];
+        $anon = 0;
+    }
+    else {
+        $anon = 1;
+    }
+    $interview = $_POST["interview"];
+    $salary = $_POST["salary"];
+    $review = $_POST["review"];
+
+    $sql = "INSERT INTO review (anonymity, type, review_text, comp_rating, ceo_rating, interview_info, salary_info, office_location, user_id, comp_id, date) VALUES ('$anon', '$reviewT', '$review', '$compR', '$ceoR','$interview', '$salary', '$compID','$userID', '$compID', 'DEFAULT')";
+    $result = mysqli_query($db,$sql);
+
+}
 
 ?>
 
 
 <html>
 <head>
-    <title>Bootstrap Autocomplete with Dynamic Data Load using PHP Ajax</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
 
@@ -84,15 +95,37 @@ else
 <br><br><br>
 
 
-
+<form style="text-align: center" action="" method="GET">
     <input class="input" style="display: inline-block;width: 15%;margin-left: 3%;" type="text" placeholder="Company Name" name="companyName" id="companyName" >
     <button type="submit" class="button" style="display: inline-block; height: 50px; margin-left: 0px; ; background-color: transparent; box-shadow:none; color: #173e43; ">Search</button>
+        <?php
+            if(isset($_GET['companyName'])) {
+                if ($_SERVER["REQUEST_METHOD"] == "GET") {
+                    $companyName = $_GET["companyName"];
+                    $sql = "SELECT * FROM comp_user NATURAL JOIN general_user WHERE company_name = \"$companyName\" ";
+                    $result = mysqli_query($db, $sql);
+                    if (mysqli_num_rows($result)==0) {
+                        $_SESSION["disable"] = "disabled=disabled";
+                        $disable = $_SESSION["disable"];
+                    }else {
+                        if ($curComp = mysqli_fetch_object($result)) {
+                            $compID = $curComp->user_ID;
+                            $compDesc = $curComp->description;
+                            $_SESSION["disable"] = "";
+                            $_SESSION["companyName"] = $companyName;
+                            $_SESSION["compID"] = $compID;
+                            $disable = $_SESSION["disable"];
+                        }
+                    }
+                }
+            }
+        ?>
 </form>
 
 <div class="row">
     <div class="column" style="margin-left: 3%">
 
-        <h2><a href="home.html" style="display: inline-block; height: 50px; font-size: 24px; margin-left: 30px;">Company Profile</a></h2> <br>
+        <h2><a href="home.html" style="display: inline-block; height: 50px; font-size: 24px; margin-left: 30px;"><?php echo $companyName ?></a></h2> <br>
 
         <h3>Company Rating</h3> <br />
         <h3>CEO Rating</h3> <br />
@@ -162,19 +195,18 @@ else
             <label for="ceorate" style="display: block; font-size: 12px; line-height: 72px; text-align: left;">CEO Rating</label>
 
 
-            <input class="input" style="height: 6%;width: 100%" type="text" placeholder="Enter Interview Info" id="interview" required>
+            <input class="input" style="height: 6%;width: 100%" type="text" placeholder="Enter Interview Info" id="interview" name ="interview" required>
             <br>
 
-            <input class="input" style="height: 6%;width: 100%" type="text" placeholder="Enter Salary Info" id="salary" required>
+            <input class="input" style="height: 6%;width: 100%" type="text" placeholder="Enter Salary Info" id="salary" name ="salary" required>
             <br>
 
-            <input class="input" style="height: 6%;width: 100%" type="text" placeholder="Enter Review" id="review" required>
+            <input class="input" style="height: 6%;width: 100%" type="text" placeholder="Enter Review" id="review" name ="review" required>
             <br>
-            <button type="submit" class="button" style="height: 40px; width: 50%; font-size: 16px;" type="submit">Publish</button>
+            <button type="submit" class="button" style="height: 40px; width: 50%; font-size: 16px;" type="submit" <?php echo $disable;?> >Publish</button>
         </form>
 
     </div>
 </div>
 </body>
 </html>
-
