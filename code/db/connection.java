@@ -52,8 +52,8 @@ public class connection {
         statement.executeUpdate("insert into applies values(2,1,'Accepted')");
         statement.executeUpdate("insert into applies values(2,2,'Rejected')");
         //Add Application Test
-        statement.executeUpdate("insert into application_test values(1,'What is your Name?');");
-        statement.executeUpdate("insert into has_test values(1,1);");
+        statement.executeUpdate("insert into application_test values(1,1,'What is your Name?');");
+        statement.executeUpdate("insert into application_test values(2,1,'Where are you from?');");
 
     }
     private static void createTables() throws SQLException {
@@ -254,33 +254,25 @@ public class connection {
                 ")engine=InnoDB;"
         );
         statement.executeUpdate("CREATE TABLE application_test(" +
-                "test_id INT AUTO_INCREMENT," +
-                "questions VARCHAR(128) NOT NULL," +
-                "PRIMARY KEY(test_id)" +
-                ")engine=InnoDB;"
-        );
-        statement.executeUpdate("CREATE TABLE has_test(" +
+                "question_id INT AUTO_INCREMENT," +
                 "offering_id INT," +
-                "FOREIGN KEY(offering_id) REFERENCES job_offering (offering_id)\n" +
-                "ON DELETE CASCADE " +
-                "ON UPDATE CASCADE," +
-                "test_id INT," +
-                "FOREIGN KEY(test_id) REFERENCES application_test ( test_id)\n" +
-                "ON DELETE CASCADE " +
-                "ON UPDATE CASCADE," +
-                "PRIMARY KEY(offering_id, test_id)" +
+                "FOREIGN KEY(offering_id) REFERENCES job_offering(offering_id)\n" +
+                "ON DELETE CASCADE, " +
+                "question VARCHAR(128) NOT NULL," +
+                "PRIMARY KEY( question_id, offering_id)" +
                 ")engine=InnoDB;"
         );
+
         statement.executeUpdate("CREATE TABLE does(" +
-                "test_id INT," +
-                "FOREIGN KEY(test_id) REFERENCES application_test ( test_id)\n" +
+                "offering_id INT," +
+                "FOREIGN KEY(offering_id) REFERENCES application_test ( offering_id)\n" +
                 "ON DELETE CASCADE " +
                 "ON UPDATE CASCADE," +
                 "user_id INT," +
                 "FOREIGN KEY(user_id) REFERENCES work_user (user_id)\n" +
                 "ON DELETE CASCADE," +
                 "answers VARCHAR(32)," +
-                "PRIMARY KEY(test_id,user_id)" +
+                "PRIMARY KEY(offering_id,user_id)" +
                 ")engine=InnoDB;"
         );
         statement.executeUpdate("CREATE TABLE posts(" +
