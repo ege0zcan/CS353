@@ -161,8 +161,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
                     }
                     echo "<p> review: $rewText Company Rating: $rewCompRating  CEO Rating: $rewCeoRating  Salary: $rewSalary Location: $rewLocation Name: $rewname</p><br>";
                 }
-                $CeoRating = $totalCEORATE/$rewNumber;
-                $CompRating = $totalCOMPRATE/$rewNumber;
+                if( $rewNumber != 0) {
+                    $CeoRating = $totalCEORATE / $rewNumber;
+                    $CompRating = $totalCOMPRATE / $rewNumber;
+                }
+                else{
+                    $CeoRating = "";
+                    $CompRating = "";
+                }
             }
 
         ?>
