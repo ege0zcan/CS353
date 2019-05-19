@@ -71,6 +71,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 <div style="text-align:center">
     <a href="https://www.w3schools.com/html/">Update Picture</a>
+    <form action="uploadcompany.php" method="post" enctype="multipart/form-data">
+        Select image to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit">
+    </form>
 </div>
 <div style="text-align:center">
     <h3><?php echo $name?></h3>
