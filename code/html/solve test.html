@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="../SolveTestStyle.css">
+    <meta charset="UTF-8">
+
+
+    <title>Solve Application Test</title>
+
+    <header class="main-header">
+        <div class="nav">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Job Search</a></li>
+                <li><a href="#">Company Search</a></li>
+                <li><a class="active" href="#">My Applications</a></li>
+                <li><a href="#">My Profile</a></li>
+            </ul>
+        </div>
+        <br><br>
+    </header>
+
+</head>
+
+<body style="background-color:#dddfd4;">
+
+    <div class="row">
+        <div class="column"  style="margin-left:15%">
+
+            <ol id="questionList">
+
+                <li id="yaziliSoru">
+                    <p>Adin ne?</p>
+                    <input type="text" name="q1"><br/><br/>
+                </li>
+
+                <li id="coktanSecmeliSoru">
+                    <p class="question">Ben kimim?</p>
+                    <ul class="answers">
+                        <input type="radio" name="q1" value="a" id="q1a"><label for="q1a">Zego</label><br/>
+                        <input type="radio" name="q1" value="b" id="q1b"><label for="q1b">Musti2000</label><br/>
+                        <input type="radio" name="q1" value="c" id="q1c"><label for="q1c">Otoban faresi</label><br/>
+                        <input type="radio" name="q1" value="d" id="q1d"><label for="q1d">rick and morty tisortuyle her sinava gelen cocuk</label><br/>
+                    </ul>
+                </li>
+            </ol>
+
+            <button type="button" id="submitButton">Submit</button>
+
+        </div>
+
+    </div>
+
+    <script type="text/javascript" src="../js/materialize.min.js"></script>
+
+</body>
+
+</html>
