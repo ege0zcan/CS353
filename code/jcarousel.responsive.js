@@ -47,6 +47,7 @@
             });
     });
 })(jQuery);
+
 function newModal(element) {
     var modal = document.getElementById('myModal');
 
@@ -68,4 +69,26 @@ function newModal(element) {
         modal.style.display = "none";
     }
 }
-// Get the modal
+
+function editLocation() {
+    var locationText = document.getElementById("addLocationForm");
+    locationText.removeAttribute("hidden");
+}
+
+function editDescription() {
+    var descriptionText = document.getElementById("editDescriptionForm");
+    descriptionText.removeAttribute("hidden");
+}
+
+function updatePicture() {
+    
+}
+
+function editAddress() {
+    var addressText = document.getElementById("editAddressForm");
+    addressText.removeAttribute("hidden");
+}
+
+function addPhotos(){
+
+}

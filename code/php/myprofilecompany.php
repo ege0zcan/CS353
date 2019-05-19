@@ -20,6 +20,24 @@ else
     header("location: home.php");
 }
 
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $formType = $_POST["formType"];
+    if ($formType == "description") {
+        $editedDescriptionText = $_REQUEST["description"];
+        $sql = "UPDATE comp_user SET description = '$editedDescriptionText' WHERE user_ID = '$userID'";
+        $result = mysqli_query($db,$sql);
+        echo $result, "edited description";
+    }
+
+    if ($formType == "location"){
+        echo "edited location";
+    }
+
+    if ($formType == "address"){
+        echo "edited address";
+    }
+}
+
 ?>
 
 /////////////////////////////////////////////////////
@@ -62,10 +80,16 @@ else
 <div class="row">
     <div class="column"  style="margin-left:15%">
 
-        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Description</h2><a href="https://www.w3schools.com/html/" class="edit">Edit</a>
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Description</h2><button onclick="editDescription()" class="edit">Edit</button>
         <p style="margin-left: 3%;"><?php echo $desc?></p>
+        <form method="post" hidden id="editDescriptionForm">
+            <input name="formType" value="description" hidden>
+            <input type="text" id="editDescriptionInput" name="description"><br>
+            <button type="submit">Submit</button>
+        </form>
 
-        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Locations</h2><a  href="https://www.w3schools.com/html/" class="edit">Edit</a>
+
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Locations</h2><button onclick="editLocation()" class="edit">Add</button>
             <?php
             $locationSql = "SELECT * FROM location WHERE comp_ID = '$userID'";
             $result2 = mysqli_query($db,$locationSql);
@@ -89,6 +113,14 @@ else
                 }
             }
             ?>
+
+        <form method="post" hidden id="addLocationForm">
+            <input name="formType" value="location" hidden>
+            <input type="text" id="addLocationInput"><br>
+            <button type="submit">Submit</button>
+        </form>
+
+
     </div>
     <div class="column" style="margin-left:15%">
         <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Contact Information</h2><br />
@@ -98,6 +130,12 @@ else
         <p style="margin-left: 3%;"><?php echo $phone?></p>
         <h3>Addres</h3> <a href="https://www.w3schools.com/html/" class="edit">Edit</a>
         <p style="margin-left: 3%;"><?php echo $mainApt," ", $mainStreet, " ", $mainCity," ", $mainCountry, " ", $mainZipcode ?> </p>
+        <form method="post" hidden id="editAddressForm">
+            <input name="formType" value="address" hidden>
+            <input type="text" id="editAddressInput"><br>
+            <button type="submit">Submit</button>
+        </form>
+
         <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Photos</h2>
         <div class="jcarousel-wrapper">
             <div class="jcarousel">

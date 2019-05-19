@@ -26,6 +26,24 @@
         header("location: home.php");
     }
 
+    if($_SERVER["REQUEST_METHOD"] == "POST") {
+        $formType = $_POST["formType"];
+        if ($formType == "description") {
+            $editedDescriptionText = $_REQUEST["description"];
+            $sql = "UPDATE work_user SET background_info = '$editedDescriptionText' WHERE user_ID = '$userID'";
+            $result = mysqli_query($db,$sql);
+            echo $result, "edited description";
+        }
+
+        if ($formType == "location"){
+            echo "edited location";
+        }
+
+        if ($formType == "address"){
+            echo "edited address";
+        }
+    }
+
 ?>
 
 ////////////////////////////////////////////////
@@ -59,19 +77,30 @@
 </div>
 <div style="text-align:center">
     <a href="https://www.w3schools.com/html/">Update Picture</a>
+
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        Select image to upload:
+        <input type="file" name="fileToUpload" id="fileToUpload">
+        <input type="submit" value="Upload Image" name="submit">
+    </form>
 </div>
 <br>
 
 <div class="row">
     <div class="column" style="  margin-left:15%">
 
-        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Background Information</h2><a href="https://www.w3schools.com/html/" class="edit">Edit</a>
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Background Information</h2><button onclick="editDescription()" class="edit">Edit</button>
         <p style="margin-left: 3%;"><?php echo $backInfo?> </p>
+        <form method="post" hidden id="editDescriptionForm">
+            <input name="formType" value="description" hidden>
+            <input type="text" id="editDescriptionInput" name="description"><br>
+            <button type="submit">Submit</button>
+        </form>
 
-        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Experience</h2><a  href="https://www.w3schools.com/html/" class="edit">Edit</a>
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Experience</h2><button class="edit">Edit</button>
         <p style="margin-left: 3%;"><?php echo $exp?></p>
 
-        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Interests</h2><a  href="https://www.w3schools.com/html/" class="edit">Edit</a>
+        <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Interests</h2><button class="edit">Edit</button>
         <p style="margin-left: 3%;"><?php echo $interests?></p>
 
         <h2 style="display: inline-block; margin-left: 3%; padding-right: 15px;">Contact Information</h2> <br />
@@ -79,14 +108,19 @@
         <p style="margin-left: 3%;"> <?php echo $email?></p>
         <h3>Phone</h3>
         <p style="margin-left: 3%;"><?php echo $phone?></p>
-        <h3>Addres</h3> <a href="https://www.w3schools.com/html/" class="edit">Edit</a>
+        <h3>Addres</h3> <button class="edit">Edit</button>
         <p style="margin-left: 3%;"><?php echo $apt_no," ", $street, " ", $city," ", $country, " ", $zipcode ?> </p>
 
     </div>
 
 </div>
 
-
+<script>
+    function editDescription() {
+        var descriptionText = document.getElementById("editDescriptionForm");
+        descriptionText.removeAttribute("hidden");
+    }
+</script>
 </body>
 </html>
 
