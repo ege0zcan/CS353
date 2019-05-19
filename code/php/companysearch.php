@@ -126,10 +126,55 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
     <div class="column" style="margin-left: 3%">
 
         <h2><a href="home.html" style="display: inline-block; height: 50px; font-size: 24px; margin-left: 30px;"><?php echo $companyName ?></a></h2> <br>
-
-        <h3>Company Rating</h3> <br />
-        <h3>CEO Rating</h3> <br />
         <h3>Reviews</h3> <br />
+        <?php
+            $totalCEORATE = 0;
+            $totalCOMPRATE = 0;
+            $rewNumber = 0;
+            $CeoRating = "";
+            $CompRating ="";
+
+            if($_SESSION["companyName"] != NULL ) {
+                $rewsql = "SELECT * FROM review WHERE comp_id = \"$compID\" ";
+                $rewresult = mysqli_query($db, $rewsql);
+                while ($rew = mysqli_fetch_object($rewresult)) {
+                    $rewNumber = $rewNumber + 1;
+                    $rewText = $rew->review_text;
+                    $rewAnon = $rew->anonymity;
+                    $rewCompRating = $rew->comp_rating;
+                    $rewCeoRating = $rew->ceo_rating;
+                    $totalCEORATE =$totalCEORATE +$rewCeoRating;
+                    $totalCOMPRATE = $totalCOMPRATE + $rewCompRating;
+                    $rewInterInfo = $rew->interview_info;
+                    $rewSalary = $rew->salary_info;
+                    $rewLocation = $rew->office_location;
+                    $rewuserID = $rew->user_id;
+                    $rewDate = $rew->date;
+                    if($rewAnon == 0) {
+                        $rewsql2 = "SELECT name FROM work_user WHERE user_ID = \"$rewuserID\" ";
+                        $rewresult2 = mysqli_query($db, $rewsql2);
+                        if ($rewN = mysqli_fetch_object($rewresult2)) {
+                            $rewname = $rewN->name;
+                        }
+                    }else{
+                            $rewname = "anon";
+                    }
+                    echo "<p> review: $rewText Company Rating: $rewCompRating  CEO Rating: $rewCeoRating  Salary: $rewSalary Location: $rewLocation Name: $rewname</p><br>";
+                }
+                $CeoRating = $totalCEORATE/$rewNumber;
+                $CompRating = $totalCOMPRATE/$rewNumber;
+            }
+
+        ?>
+        <div>
+            <h3>Company Rating</h3> <br /><br>
+            <p><?php echo $CompRating?></p>
+        </div>
+        <div>
+            <h3>CEO Rating</h3> <br /><br>
+            <p><?php echo $CeoRating?></p>
+        </div>
+
 
 
 
