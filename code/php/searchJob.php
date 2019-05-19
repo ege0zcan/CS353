@@ -1,7 +1,7 @@
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <title>Search Job</title>
 </head>
 
@@ -55,7 +55,7 @@
     <div class="column">
         <h1 class="create" style="display: inline-block; margin-left: 20px">Job Details</h1>
         <button class="button" style="display: inline-block; height: 50px;margin-left: 475px; font-size: 16px">Apply</button>
-        <a style="margin-left: 30px;" href="home.html">Company Profile</a>
+        <a style="margin-left: 30px;" href="home.php">Company Profile</a>
         <div class="row">
             <div class="column1">
                 <p style="display: inline-block; margin-left: 20px;">Bu is cok guzel falan filan falan filan falan filan asd adasd ada das dasd asd ad </p>

@@ -26,10 +26,10 @@ else
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://sorgalla.com/jcarousel/dist/jquery.jcarousel.min.js?raw=1"></script>
-    <script type="text/javascript" src="jcarousel.responsive.js"></script>
+    <script type="text/javascript" src="../jcarousel.responsive.js"></script>
 
     <title>My Profile</title>
 </head>
