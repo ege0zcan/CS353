@@ -54,7 +54,9 @@ public class connection {
         //Add Application Test
         statement.executeUpdate("insert into application_test values(1,1,'What is your Name?');");
         statement.executeUpdate("insert into application_test values(2,1,'Where are you from?');");
-
+        //Add Review
+        statement.executeUpdate("INSERT INTO `review` (`review_id`, `anonymity`, `type`, `review_text`, `comp_rating`, `ceo_rating`, `interview_info`, `salary_info`, `office_location`, `user_id`, `comp_id`, `date`) VALUES (NULL, '0', 'Internship', 'Güzel Şirket', 5, 5, 'Kolay', '1500₺', 'Izmir', 1, 3, CURRENT_TIMESTAMP);");
+        statement.executeUpdate("INSERT INTO `review` (`review_id`, `anonymity`, `type`, `review_text`, `comp_rating`, `ceo_rating`, `interview_info`, `salary_info`, `office_location`, `user_id`, `comp_id`, `date`) VALUES (NULL, '0', 'Full Time', 'nice', 4, 4, 'EZ', '4000₺', 'Izmir', 2, 3, CURRENT_TIMESTAMP);");
     }
     private static void createTables() throws SQLException {
 
@@ -193,10 +195,12 @@ public class connection {
                 ")engine=InnoDB;"
         );
         statement.executeUpdate("CREATE TABLE report(" +
+                "user_id INT," +
+                "FOREIGN KEY(user_id) REFERENCES comp_user(user_ID)\n" +
+                "ON DELETE CASCADE," +
                 "report_id INT AUTO_INCREMENT," +
                 "description VARCHAR(128) NOT NULL," +
                 "date DATETIME DEFAULT CURRENT_TIMESTAMP," +
-                "subject VARCHAR(32) NOT NULL," +
                 "PRIMARY KEY(report_id)" +
                 ")engine=InnoDB;"
         );
@@ -213,17 +217,6 @@ public class connection {
                 ")engine=InnoDB;"
         );
 
-        statement.executeUpdate("CREATE TABLE submits(" +
-                "user_id INT," +
-                "FOREIGN KEY(user_id) REFERENCES comp_user(user_ID)\n" +
-                "ON DELETE CASCADE," +
-                "report_id INT," +
-                "FOREIGN KEY(report_id) REFERENCES report (report_id)\n" +
-                "ON DELETE CASCADE " +
-                "ON UPDATE CASCADE," +
-                "PRIMARY KEY(report_id)" +
-                ")engine=InnoDB;"
-        );
         statement.executeUpdate("CREATE TABLE admin(" +
                 "admin_id INT AUTO_INCREMENT," +
                 "password VARCHAR(32) NOT NULL," +

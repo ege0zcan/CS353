@@ -1,6 +1,7 @@
 <?php
 include("config.php");
 session_start();
+$date = date("Y-m-d");
 if (!empty($_SESSION))
 {
     $userID = $_SESSION["userID"];
@@ -24,26 +25,37 @@ else{
 
 if($_SERVER["REQUEST_METHOD"] == "POST" )
 {
+//date check
+    $fetchDate = "SELECT MAX(date) as asd, user_id FROM review WHERE user_id = '$userID' and comp_id ='$compID' GROUP BY user_id";
+    $query = mysqli_query($db,$fetchDate);
+    $workUser = mysqli_fetch_object($query);
+    $last = $workUser->asd;
+    $checktime = abs(strtotime($date) - strtotime($last));
+    $years = floor($checktime / (365*60*60*24));
+    $months = floor(($checktime - $years * 365*60*60*24) / (30*60*60*24));
 
-    $compR = $_POST["rate"];
-    $ceoR = $_POST["rate2"];
-    $reviewT = $_POST["rtype"];
-    if(isset($_POST['checkbox'])){
-        $anon = $_POST["checkbox"];
-        $anon = 0;
+    if ( $years < 1 && $months < 6){
+        echo "<script>alert(\"YOU'VE SUBMITTED A COMMENT FOR THIS COMPANY IN 6 MONTHS\")</script>";
+    }else{
+        $compR = $_POST["rate"];
+        $ceoR = $_POST["rate2"];
+        $reviewT = $_POST["rtype"];
+        if(isset($_POST['checkbox'])){
+            $anon = $_POST["checkbox"];
+            $anon = 0;
+        }
+        else {
+            $anon = 1;
+        }
+        $interview = $_POST["interview"];
+        $salary = $_POST["salary"];
+        $review = $_POST["review"];
+
+        $sql = "INSERT INTO review (anonymity, type, review_text, comp_rating, ceo_rating, interview_info, salary_info, office_location, user_id, comp_id, date) VALUES ('$anon', '$reviewT', '$review', '$compR', '$ceoR','$interview', '$salary', '$compID','$userID', '$compID', 'DEFAULT')";
+        $result = mysqli_query($db,$sql);
+
     }
-    else {
-        $anon = 1;
-    }
-    $interview = $_POST["interview"];
-    $salary = $_POST["salary"];
-    $review = $_POST["review"];
-
-    $sql = "INSERT INTO review (anonymity, type, review_text, comp_rating, ceo_rating, interview_info, salary_info, office_location, user_id, comp_id, date) VALUES ('$anon', '$reviewT', '$review', '$compR', '$ceoR','$interview', '$salary', '$compID','$userID', '$compID', 'DEFAULT')";
-    $result = mysqli_query($db,$sql);
-
 }
-
 ?>
 
 
@@ -78,7 +90,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
 
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <title>Company Search</title>
 </head>
 
@@ -86,7 +98,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
 <header class="main-header">
     <div class="nav">
         <ul>
-            <li><a href="home.php">Home</a></li>
             <li><a href="searchjob.php">Job Search</a></li>
             <li><a class="active" href="#">Company Search</a></li>
             <li><a href="myapplications.php">My Applications</a></li>
@@ -100,27 +111,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
 <form style="text-align: center" action="" method="GET">
     <input class="input" style="display: inline-block;width: 15%;margin-left: 3%;" type="text" placeholder="Company Name" name="companyName" id="companyName" >
     <button type="submit" class="button" style="display: inline-block; height: 50px; margin-left: 0px; ; background-color: transparent; box-shadow:none; color: #173e43; ">Search</button>
-        <?php
-            if(isset($_GET['companyName'])) {
-                if ($_SERVER["REQUEST_METHOD"] == "GET") {
-                    $companyName = $_GET["companyName"];
-                    $sql = "SELECT * FROM comp_user NATURAL JOIN general_user WHERE company_name = \"$companyName\" ";
-                    $result = mysqli_query($db, $sql);
-                    if (mysqli_num_rows($result)==0) {
-                        $_SESSION["disable"] = "disabled=disabled";
-                        $disable = "disabled=disabled";
-                    }else {
-                        if ($curComp = mysqli_fetch_object($result)) {
-                            $compID = $curComp->user_ID;
-                            $compDesc = $curComp->description;
-                            $_SESSION["disable"] = "";
-                            $_SESSION["companyName"] = $companyName;
-                            $_SESSION["compID"] = $compID;
-                        }
-                    }
+    <?php
+    if(isset($_GET['companyName'])) {
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+            $companyName = $_GET["companyName"];
+            $sql = "SELECT * FROM comp_user NATURAL JOIN general_user WHERE company_name = \"$companyName\" ";
+            $result = mysqli_query($db, $sql);
+            if (mysqli_num_rows($result)==0) {
+                $_SESSION["disable"] = "disabled=disabled";
+                $disable = "disabled=disabled";
+            }else {
+                if ($curComp = mysqli_fetch_object($result)) {
+                    $compID = $curComp->user_ID;
+                    $compDesc = $curComp->description;
+                    $_SESSION["disable"] = "";
+                    $_SESSION["companyName"] = $companyName;
+                    $_SESSION["compID"] = $compID;
                 }
             }
-        ?>
+        }
+    }
+    ?>
 </form>
 
 <div class="row">
@@ -128,39 +139,56 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
 
         <h2 style="display: inline-block; height: 50px; font-size: 24px; margin-left: 30px;"><?php if(isset($_SESSION["disable"]) && $_SESSION["disable"] == ""){echo $companyName;}else{echo ("PLEASE SELECT A COMPANY..");} ?></></h2> <br>
         <?php
-            $totalCEORATE = 0;
-            $totalCOMPRATE = 0;
-            $rewNumber = 0;
-            $CeoRating = "";
-            $CompRating ="";
-            if (isset($_SESSION["disable"]) && $_SESSION["disable"] == "") {
-                $disable = $_SESSION["disable"];
-                echo("<h3>Reviews</h3> <br />");
-                $rewsql = "SELECT * FROM review WHERE comp_id = \"$compID\" ";
-                $rewresult = mysqli_query($db, $rewsql);
-                while ($rew = mysqli_fetch_object($rewresult)) {
+        if(isset($_SESSION["disable"]) && $_SESSION["disable"] == "") {
+            $overallsql= "SELECT AVG(comp_rating) as compAVG, AVG(ceo_rating) as ceoAVG, comp_id FROM review WHERE comp_id = '$compID' GROUP BY comp_id";
+            $ovresult = mysqli_query($db, $overallsql);
+            if($overall = mysqli_fetch_object($ovresult)){
+                $CompRating =  $overall->compAVG;
+                $CeoRating = $overall->ceoAVG;
+            }
 
-                    $rewNumber = $rewNumber + 1;
-                    $rewText = $rew->review_text;
-                    $rewAnon = $rew->anonymity;
-                    $rewCompRating = $rew->comp_rating;
-                    $rewCeoRating = $rew->ceo_rating;
-                    $totalCEORATE = $totalCEORATE + $rewCeoRating;
-                    $totalCOMPRATE = $totalCOMPRATE + $rewCompRating;
-                    $rewInterInfo = $rew->interview_info;
-                    $rewSalary = $rew->salary_info;
-                    $rewLocation = $rew->office_location;
-                    $rewuserID = $rew->user_id;
-                    $rewDate = $rew->date;
-                    $rewType = $rew->type;
-                    if ($rewAnon == 0) {
-                        $rewsql2 = "SELECT name, pp_link FROM work_user NATURAL JOIN general_user WHERE user_ID = \"$rewuserID\" ";
-                        $rewresult2 = mysqli_query($db, $rewsql2);
-                        if ($rewN = mysqli_fetch_object($rewresult2)) {
-                            $rewname = $rewN->name;
-                            $pplink = $rewN->pp_link;
-                        }
-                        echo "  <div class=\"row\">
+
+            echo(" <div><h3>Company Rating :</h3> ");
+            echo(round($CompRating, 1));
+            echo("</p></div><div><h3>CEO Rating : </h3> ");
+            echo(round($CeoRating, 1));
+            echo("</p></div>");
+        }
+        ?>
+        <?php
+        $totalCEORATE = 0;
+        $totalCOMPRATE = 0;
+        $rewNumber = 0;
+        $CeoRating = "";
+        $CompRating ="";
+        if (isset($_SESSION["disable"]) && $_SESSION["disable"] == "") {
+            $disable = $_SESSION["disable"];
+            echo("<h3>Reviews</h3> <br />");
+            $rewsql = "SELECT * FROM review WHERE comp_id = \"$compID\" ";
+            $rewresult = mysqli_query($db, $rewsql);
+            while ($rew = mysqli_fetch_object($rewresult)) {
+
+                $rewNumber = $rewNumber + 1;
+                $rewText = $rew->review_text;
+                $rewAnon = $rew->anonymity;
+                $rewCompRating = $rew->comp_rating;
+                $rewCeoRating = $rew->ceo_rating;
+                $totalCEORATE = $totalCEORATE + $rewCeoRating;
+                $totalCOMPRATE = $totalCOMPRATE + $rewCompRating;
+                $rewInterInfo = $rew->interview_info;
+                $rewSalary = $rew->salary_info;
+                $rewLocation = $rew->office_location;
+                $rewuserID = $rew->user_id;
+                $rewDate = $rew->date;
+                $rewType = $rew->type;
+                if ($rewAnon == 0) {
+                    $rewsql2 = "SELECT name, pp_link FROM work_user NATURAL JOIN general_user WHERE user_ID = \"$rewuserID\" ";
+                    $rewresult2 = mysqli_query($db, $rewsql2);
+                    if ($rewN = mysqli_fetch_object($rewresult2)) {
+                        $rewname = $rewN->name;
+                        $pplink = $rewN->pp_link;
+                    }
+                    echo "  <div class=\"row\">
                                 <div class=\"\">
                                     <div class=\"card\">
                                         <div class=\"image\">
@@ -176,9 +204,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
                                     </div>
                                 </div>
                             </div>";
-                    } else {
-                        $rewname = "anon";
-                        echo "  <div class=\"row\">
+                } else {
+                    $rewname = "anon";
+                    echo "  <div class=\"row\">
                                 <div class=\"\">
                                     <div class=\"card\">                                       
                                         <div class=\"text\">
@@ -190,28 +218,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
                                     </div>
                                 </div>
                             </div>";
-                    }
                 }
-                if ($rewNumber != 0) {
-                    $CeoRating = $totalCEORATE / $rewNumber;
-                    $CompRating = $totalCOMPRATE / $rewNumber;
-                } else {
-                    $CeoRating = "";
-                    $CompRating = "";
-                }
-
+            }
+            if ($rewNumber != 0) {
+                $CeoRating = $totalCEORATE / $rewNumber;
+                $CompRating = $totalCOMPRATE / $rewNumber;
+            } else {
+                $CeoRating = "";
+                $CompRating = "";
             }
 
+        }
+
         ?>
-        <?php
-            if(isset($_SESSION["disable"]) && $_SESSION["disable"] == "") {
-                echo(" <div><h3>Company Rating</h3> <br /><br><p>");
-                echo(round($CompRating, 1));
-                echo("</p></div><div><h3>CEO Rating</h3> <br /><br><p> ");
-                echo(round($CeoRating, 1));
-                echo("</p></div>");
-            }
-        ?>
+
 
 
 
@@ -219,8 +239,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
 
         <div class="pagination" style="margin-left: 15px;">
             <a href="#">&laquo;</a>
-            <a href="#">1</a>
-            <a href="#" class="active">2</a>
+            <a href="#" class="active">1</a>
+            <a href="#" >2</a>
             <a href="#">3</a>
             <a href="#">4</a>
             <a href="#">&raquo;</a>

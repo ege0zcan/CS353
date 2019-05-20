@@ -26,11 +26,10 @@ else
     <header class="main-header">
         <div class="nav">
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Job Search</a></li>
-                <li><a href="#">Company Search</a></li>
-                <li><a class="active" href="#">My Applications</a></li>
-                <li><a href="#">My Profile</a></li>
+                <li><a href="myreviews.php">My Reviews</a></li>
+                <li><a  href="createjob.php">Create Job</a></li>
+                <li><a class="active" href="#">My Jobs</a></li>
+                <li><a  href="myprofilecompany.php">My Profile</a></li>
             </ul>
         </div>
         <br><br>
@@ -42,20 +41,24 @@ else
 
 <div class="row">
     <div class="column"  style="margin-left:15%">
+        <form  action="" method="POST">
 
         <ol id="questionList">
             <?php
+                $count = 0;
                 $sql = "SELECT * FROM application_test  WHERE offering_id ='". $_SESSION['idForTest'] ."'";
                 $result = mysqli_query($db, $sql);
                 while($question = mysqli_fetch_object($result)){
+                    $count = $count + 1;
                     $q = $question->question;
+                    $qid = $question->question_id;
                     echo( "            <li id=\"question\">");
                     echo( "<p>Question:</p>");
                     echo( "<p>$q</p>");
                     echo("</li>");
+                    echo("<button class=\"button\" type = \"submit\" id=\"addButton\" name=\"delete\" value=\"$qid\" >Delete Question</button> <br/>");
                 }
             ?>
-            <form  action="" method="POST">
 
             <li id="question">
                 <p>Question:</p>
@@ -72,6 +75,12 @@ else
                     $sql2 = "INSERT INTO application_test  VALUES(DEFAULT,'" . $_SESSION['idForTest'] . "','" . $_POST['newQ'] . "' )";
                     $result = mysqli_query($db, $sql2);
                     header("location: createTest.php");
+                }
+                if(isset($_POST['delete'])){
+                    $delete = "DELETE FROM application_test WHERE question_id = '". $_POST['delete']."' ";
+                    $result2 =mysqli_query($db, $delete);
+                    header("location: createTest.php");
+
                 }
             }
 

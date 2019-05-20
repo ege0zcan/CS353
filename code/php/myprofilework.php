@@ -1,56 +1,50 @@
 <?php
-    include("config.php");
-    session_start();
-    if (!empty($_SESSION))
-    {
-        $userID = $_SESSION["userID"];
-        $sql = "SELECT *FROM work_user NATURAL JOIN general_user WHERE user_ID = '$userID'";
+include("config.php");
+session_start();
+if (!empty($_SESSION))
+{
+    $userID = $_SESSION["userID"];
+    $sql = "SELECT *FROM work_user NATURAL JOIN general_user WHERE user_ID = '$userID'";
+    $result = mysqli_query($db,$sql);
+    $workUser = mysqli_fetch_object($result);
+    $name = $workUser->name;
+    $backInfo = $workUser->background_info;
+    $exp = $workUser->experience;
+    $interests = $workUser->saved_interests;
+    $phone= $workUser->phone_no;
+    $pplink =$workUser->pp_link;
+    $apt_no = $workUser->apartment_no;
+    $street = $workUser->street;
+    $city = $workUser->city;
+    $state = $workUser->state;
+    $country = $workUser->country;
+    $zipcode = $workUser->zipcode;
+    $email = $workUser->email;
+}
+else
+{
+    header("location: home.php");
+}
+if($_SERVER["REQUEST_METHOD"] == "POST") {
+    $formType = $_POST["formType"];
+    if ($formType == "description") {
+        $editedDescriptionText = $_REQUEST["description"];
+        $sql = "UPDATE work_user SET background_info = '$editedDescriptionText' WHERE user_ID = '$userID'";
         $result = mysqli_query($db,$sql);
-        $workUser = mysqli_fetch_object($result);
-        $name = $workUser->name;
-        $backInfo = $workUser->background_info;
-        $exp = $workUser->experience;
-        $interests = $workUser->saved_interests;
-        $phone= $workUser->phone_no;
-        $pplink =$workUser->pp_link;
-        $apt_no = $workUser->apartment_no;
-        $street = $workUser->street;
-        $city = $workUser->city;
-        $state = $workUser->state;
-        $country = $workUser->country;
-        $zipcode = $workUser->zipcode;
-        $email = $workUser->email;
+        header("location: myprofilework.php");
     }
-    else
-    {
-        header("location: home.php");
+    if ($formType == "location"){
+        echo "edited location";
     }
-
-    if($_SERVER["REQUEST_METHOD"] == "POST") {
-        $formType = $_POST["formType"];
-        if ($formType == "description") {
-            $editedDescriptionText = $_REQUEST["description"];
-            $sql = "UPDATE work_user SET background_info = '$editedDescriptionText' WHERE user_ID = '$userID'";
-            $result = mysqli_query($db,$sql);
-            echo $result, "edited description";
-        }
-
-        if ($formType == "location"){
-            echo "edited location";
-        }
-
-        if ($formType == "address"){
-            echo "edited address";
-        }
+    if ($formType == "address"){
+        echo "edited address";
     }
-
+}
 ?>
-
-////////////////////////////////////////////////
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <title>My Profile</title>
 </head>
 
@@ -58,8 +52,7 @@
 <header class="main-header">
     <div class="nav">
         <ul>
-            <li><a href="home.php">Home</a></li>
-            <li><a href="searchJob.php">Job Search</a></li>
+            <li><a href="searchjob.php">Job Search</a></li>
             <li><a href="companysearch.php">Company Search</a></li>
             <li><a href="myapplications.php">My Applications</a></li>
             <li><a class="active" href="#">My Profile</a></li>
@@ -76,8 +69,6 @@
     <h3><?php echo $name?></h3>
 </div>
 <div style="text-align:center">
-    <a href="https://www.w3schools.com/html/">Update Picture</a>
-
     <form action="upload.php" method="post" enctype="multipart/form-data">
         Select image to upload:
         <input type="file" name="fileToUpload" id="fileToUpload">
@@ -123,4 +114,3 @@
 </script>
 </body>
 </html>
-
