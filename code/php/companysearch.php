@@ -76,22 +76,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
 
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <title>Company Search</title>
 </head>
 
 <body style="background-color:#dddfd4;">
-<header class="main-header">
-    <div class="nav">
-        <ul>
-            <li><a href="home.php">Home</a></li>
-            <li><a href="searchjob.php">Job Search</a></li>
-            <li><a class="active" href="#">Company Search</a></li>
-            <li><a href="myapplications.php">My Applications</a></li>
-            <li><a href="myprofilework.php">My Profile</a></li>
-        </ul>
-    </div>
-</header>
+<!--<header class="main-header">-->
+<!--    <div class="nav">-->
+<!--        <ul>-->
+<!--            <li><a href="home.php">Home</a></li>-->
+<!--            <li><a href="searchjob.php">Job Search</a></li>-->
+<!--            <li><a class="active" href="#">Company Search</a></li>-->
+<!--            <li><a href="myapplications.php">My Applications</a></li>-->
+<!--            <li><a href="myprofilework.php">My Profile</a></li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</header>-->
 <br><br><br>
 
 
@@ -122,6 +122,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
         ?>
 </form>
 
+
+
 <div class="row">
     <div class="column" style="margin-left: 3%">
 
@@ -135,12 +137,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
             $CompRating ="";
 
             if($_SESSION["companyName"] != NULL ) {
+                $ppsql = "SELECT * FROM general_user WHERE user_ID = \"$compID\" ";
+                $ppresult = mysqli_query($db, $ppsql);
+                while ($pp = mysqli_fetch_object($ppresult)) {
+                    $pplink = $pp->pp_link;
+                }
                 $rewsql = "SELECT * FROM review WHERE comp_id = \"$compID\" ";
                 $rewresult = mysqli_query($db, $rewsql);
                 while ($rew = mysqli_fetch_object($rewresult)) {
                     $rewNumber = $rewNumber + 1;
                     $rewText = $rew->review_text;
                     $rewAnon = $rew->anonymity;
+                    $rewType = $rew->type;
                     $rewCompRating = $rew->comp_rating;
                     $rewCeoRating = $rew->ceo_rating;
                     $totalCEORATE =$totalCEORATE +$rewCeoRating;
@@ -159,26 +167,46 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
                     }else{
                             $rewname = "anon";
                     }
-                    echo "<p> review: $rewText Company Rating: $rewCompRating  CEO Rating: $rewCeoRating  Salary: $rewSalary Location: $rewLocation Name: $rewname</p><br>";
+                    if( $rewNumber != 0) {
+                        $CeoRating = $totalCEORATE / $rewNumber;
+                        $CompRating = $totalCOMPRATE / $rewNumber;
+                    }
+                    else{
+                        $CeoRating = "";
+                        $CompRating = "";
+                    }
+//                    echo "<p> review: $rewText Company Rating: $rewCompRating  CEO Rating: $rewCeoRating  Salary: $rewSalary Location: $rewLocation Name: $rewname</p><br>";
+                    echo "  <div class=\"row\">
+                <div class=\"\">
+                    <div class=\"card\">
+
+                        <div class=\"image\">
+                            <img class=\"profile_pic\" src=$pplink>
+                        </div>
+
+                        <div class=\"text\">
+
+                            <h3>$rewType </h3>
+                            <p>$rewText</p> <br/>
+                            <p>Company Rating : $CompRating</p>
+                            <p>CEO Rating : $CeoRating</p>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>";
                 }
-                if( $rewNumber != 0) {
-                    $CeoRating = $totalCEORATE / $rewNumber;
-                    $CompRating = $totalCOMPRATE / $rewNumber;
-                }
-                else{
-                    $CeoRating = "";
-                    $CompRating = "";
-                }
+
+
+
+
             }
 
         ?>
         <div>
-            <h3>Company Rating</h3> <br /><br>
-            <p><?php echo $CompRating?></p>
-        </div>
-        <div>
-            <h3>CEO Rating</h3> <br /><br>
-            <p><?php echo $CeoRating?></p>
+
         </div>
 
 
@@ -214,33 +242,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
                 </div>
             </label>
 
-            <label for="comprate" style="display: block;visibility: hidden">Company Rating</label>
+            <label for="comprate" style="display: block;visibility: hidden;font-size:12px;"></label>
             <div class="rate " id="comprate" >
                 <input type="radio" id="star5" name="rate" value="5" />
-                <label for="star5" title="text">5 stars</label>
+                <label for="star5" title="text"></label>
                 <input type="radio" id="star4" name="rate" value="4" />
-                <label for="star4" title="text">4 stars</label>
+                <label for="star4" title="text"></label>
                 <input type="radio" id="star3" name="rate" value="3" />
-                <label for="star3" title="text">3 stars</label>
+                <label for="star3" title="text"></label>
                 <input type="radio" id="star2" name="rate" value="2" />
-                <label for="star2" title="text">2 stars</label>
+                <label for="star2" title="text"></label>
                 <input type="radio" id="star1" name="rate" value="1" />
-                <label for="star1" title="text">1 star</label>
+                <label for="star1" title="text"></label>
             </div>
 
-            <label for="ceorate" style="display: block; font-size: 12px;">Company Rating</label>
+            <label for="ceorate" style="display: block; text-align: left; font-size: 12px;">Company Rating</label>
 
             <div class="rate" id="ceorate" value="2">
                 <input type="radio" id="star55" name="rate2" value="5" />
-                <label for="star55" title="text">5 stars</label>
+                <label for="star55" title="text"></label>
                 <input type="radio" id="star44" name="rate2" value="4" />
-                <label for="star44" title="text">4 stars</label>
+                <label for="star44" title="text"></label>
                 <input type="radio" id="star33" name="rate2" value="3" />
-                <label for="star33" title="text">3 stars</label>
+                <label for="star33" title="text"></label>
                 <input type="radio" id="star22" name="rate2" value="2" />
-                <label for="star22" title="text">2 stars</label>
+                <label for="star22" title="text"></label>
                 <input type="radio" id="star11" name="rate2" value="1" />
-                <label for="star11" title="text">1 star</label>
+                <label for="star11" title="text"></label>
             </div>
 
             <label for="ceorate" style="display: block; font-size: 12px; line-height: 72px; text-align: left;">CEO Rating</label>
@@ -254,8 +282,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
 
             <input class="input" style="height: 6%;width: 100%" type="text" placeholder="Enter Review" id="review" name ="review" required>
             <br>
-            <button type="submit" class="button" style="height: 40px; width: 50%; font-size: 16px;" type="submit" <?php echo $disable;?> >Publish</button>
+            <button type="submit" class="button" name="add" id="add" style="height: 40px; width: 50%; font-size: 16px;" type="submit" <?php echo $disable;?> >Publish</button>
         </form>
+        <?php
+            if($_SERVER["REQUEST_METHOD"] == "POST" ) {
+                if (isset($_POST['add'])) {
+                    if(isset($_POST['checkbox'])) { // checkbox seçilmişse "on" değeri gönderiliyor
+                        $privacy = 1;
+                    } else { // seçilmemişse bu değer sayfaya hiç gönderilmiyor
+                        $privacy  = 0;
+                    }
+                    $sql2 = "INSERT INTO review  VALUES(DEFAULT, "  . $privacy . ",'" .$_POST['rtype'] .
+                        "','" . $_POST['review']. "','" . $_POST['rate'] . "','" . $_POST['rate2'] . "','" . $_POST['interview']
+                        . "','" . $_POST['salary']. "', 'Ankara', " . $userID . "," . $compID . ", DEFAULT);";
+                    $result = mysqli_query($db, $sql2);
+                    echo $sql2;
+                    echo $result;
+                }
+            }
+            ?>
+
 
     </div>
 </div>
