@@ -64,17 +64,17 @@ else
         echo("</p></div>");
         ?>
         <form action="" method="post" >
-        <?php
-        $totalCEORATE = 0;
-        $totalCOMPRATE = 0;
-        $rewNumber = 0;
-        $CeoRating = "";
-        $CompRating ="";
-        if(isset($_GET['day'])) {
-            $rewsql = "SELECT * FROM review WHERE comp_id = \"$userID\" AND date > '" . $_GET['day'] . "'";
-        }else{
-            $rewsql = "SELECT * FROM review WHERE comp_id = \"$userID\" ";
-        }
+            <?php
+            $totalCEORATE = 0;
+            $totalCOMPRATE = 0;
+            $rewNumber = 0;
+            $CeoRating = "";
+            $CompRating ="";
+            if(isset($_GET['day'])) {
+                $rewsql = "SELECT * FROM review WHERE comp_id = \"$userID\" AND date > '" . $_GET['day'] . "'";
+            }else{
+                $rewsql = "SELECT * FROM review WHERE comp_id = \"$userID\" ";
+            }
             $rewresult = mysqli_query($db, $rewsql);
             while ($rew = mysqli_fetch_object($rewresult)) {
                 $rewID =$rew->review_id;
@@ -134,24 +134,24 @@ else
                             </div>";
                 }
 
-        }
+            }
 
-        if(isset($_POST['report'])){
-            $value= $_POST['report'];
-            $reportSql ="INSERT INTO `report`(`user_id`,`description`, `date`) VALUES ('$userID','".$_POST[$value]."','$date')";
-            $reportSql2 = "INSERT INTO `has`(`report_id`,`review_id`) VALUES (LAST_INSERT_ID(),'$rewID')";
-            $reportresult = mysqli_query($db, $reportSql);
-            $reportresult2 =mysqli_query($db, $reportSql2);
-            echo("Successfully Sent");
-        }
-        ?>
+            if(isset($_POST['report'])){
+                $value= $_POST['report'];
+                $reportSql ="INSERT INTO `report`(`user_id`,`description`, `date`) VALUES ('$userID','".$_POST[$value]."','$date')";
+                $reportSql2 = "INSERT INTO `has`(`report_id`,`review_id`) VALUES (LAST_INSERT_ID(),'$rewID')";
+                $reportresult = mysqli_query($db, $reportSql);
+                $reportresult2 =mysqli_query($db, $reportSql2);
+                echo("Successfully Sent");
+            }
+            ?>
         </form>
 
 
     </div>
 
 
-    </div>
+</div>
 </div>
 </body>
 </html>
