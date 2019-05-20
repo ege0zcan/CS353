@@ -53,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
 
 
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="typeahead.js"></script>
+    <script type="text/javascript" src="../typeahead.js"></script>
     <script>
         $(document).ready(function () {
             $('#companyName').typeahead({
@@ -78,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
 
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <title>Company Search</title>
 </head>
 
