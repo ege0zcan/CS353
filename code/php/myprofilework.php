@@ -59,7 +59,7 @@
     <div class="nav">
         <ul>
             <li><a href="home.php">Home</a></li>
-            <li><a href="searchjob.php">Job Search</a></li>
+            <li><a href="searchJob.php">Job Search</a></li>
             <li><a href="companysearch.php">Company Search</a></li>
             <li><a href="myapplications.php">My Applications</a></li>
             <li><a class="active" href="#">My Profile</a></li>
