@@ -10,14 +10,16 @@ else
     header("location: home.php");
 }
 
-if($_SESSION["companyName"] == NULL ){
-    $disable = "disabled=disabled";
-    $companyName = "PLEASE SELECT A COMPANY..";
-}
-else{
+if( isset($_SESSION["disable"]) && $_SESSION["disable"] == "" ){
+    $disable = "";
+
     $companyName = $_SESSION["companyName"];
     $disable = $_SESSION["disable"];
     $compID = $_SESSION["compID"];
+}
+else{
+    $companyName = "PLEASE SELECT A COMPANY..";
+    $disable = "disabled=disabled";
 }
 
 if($_SERVER["REQUEST_METHOD"] == "POST" )
@@ -106,7 +108,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
                     $result = mysqli_query($db, $sql);
                     if (mysqli_num_rows($result)==0) {
                         $_SESSION["disable"] = "disabled=disabled";
-                        $disable = $_SESSION["disable"];
+                        $disable = "disabled=disabled";
                     }else {
                         if ($curComp = mysqli_fetch_object($result)) {
                             $compID = $curComp->user_ID;
@@ -114,7 +116,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
                             $_SESSION["disable"] = "";
                             $_SESSION["companyName"] = $companyName;
                             $_SESSION["compID"] = $compID;
-                            $disable = $_SESSION["disable"];
                         }
                     }
                 }
@@ -125,61 +126,93 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
 <div class="row">
     <div class="column" style="margin-left: 3%">
 
-        <h2><a href="home.html" style="display: inline-block; height: 50px; font-size: 24px; margin-left: 30px;"><?php echo $companyName ?></a></h2> <br>
-        <h3>Reviews</h3> <br />
+        <h2><a href="home.html" style="display: inline-block; height: 50px; font-size: 24px; margin-left: 30px;"><?php if(isset($_SESSION["disable"]) && $_SESSION["disable"] == ""){echo $companyName;}else{echo ("PLEASE SELECT A COMPANY..");} ?></a></h2> <br>
         <?php
             $totalCEORATE = 0;
             $totalCOMPRATE = 0;
             $rewNumber = 0;
             $CeoRating = "";
             $CompRating ="";
-
-            if($_SESSION["companyName"] != NULL ) {
+            if (isset($_SESSION["disable"]) && $_SESSION["disable"] == "") {
+                $disable = $_SESSION["disable"];
+                echo("<h3>Reviews</h3> <br />");
                 $rewsql = "SELECT * FROM review WHERE comp_id = \"$compID\" ";
                 $rewresult = mysqli_query($db, $rewsql);
                 while ($rew = mysqli_fetch_object($rewresult)) {
+
                     $rewNumber = $rewNumber + 1;
                     $rewText = $rew->review_text;
                     $rewAnon = $rew->anonymity;
                     $rewCompRating = $rew->comp_rating;
                     $rewCeoRating = $rew->ceo_rating;
-                    $totalCEORATE =$totalCEORATE +$rewCeoRating;
+                    $totalCEORATE = $totalCEORATE + $rewCeoRating;
                     $totalCOMPRATE = $totalCOMPRATE + $rewCompRating;
                     $rewInterInfo = $rew->interview_info;
                     $rewSalary = $rew->salary_info;
                     $rewLocation = $rew->office_location;
                     $rewuserID = $rew->user_id;
                     $rewDate = $rew->date;
-                    if($rewAnon == 0) {
-                        $rewsql2 = "SELECT name FROM work_user WHERE user_ID = \"$rewuserID\" ";
+                    $rewType = $rew->type;
+                    if ($rewAnon == 0) {
+                        $rewsql2 = "SELECT name, pp_link FROM work_user NATURAL JOIN general_user WHERE user_ID = \"$rewuserID\" ";
                         $rewresult2 = mysqli_query($db, $rewsql2);
                         if ($rewN = mysqli_fetch_object($rewresult2)) {
                             $rewname = $rewN->name;
+                            $pplink = $rewN->pp_link;
                         }
-                    }else{
-                            $rewname = "anon";
+                        echo "  <div class=\"row\">
+                                <div class=\"\">
+                                    <div class=\"card\">
+                                        <div class=\"image\">
+                                            <img class=\"profile_pic\" src=$pplink>
+                                        </div>
+                                        <div class=\"text\">
+                                            <h3>$rewType </h3>
+                                            <p>posted by:$rewname</p>
+                                            <p>$rewText</p> <br/>
+                                            <p>Company Rating : $rewCompRating</p>
+                                            <p>CEO Rating : $rewCeoRating</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>";
+                    } else {
+                        $rewname = "anon";
+                        echo "  <div class=\"row\">
+                                <div class=\"\">
+                                    <div class=\"card\">                                       
+                                        <div class=\"text\">
+                                            <h3>$rewType </h3>
+                                            <p>$rewText</p> <br/>
+                                            <p>Company Rating : $rewCompRating</p>
+                                            <p>CEO Rating : $rewCeoRating</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>";
                     }
-                    echo "<p> review: $rewText Company Rating: $rewCompRating  CEO Rating: $rewCeoRating  Salary: $rewSalary Location: $rewLocation Name: $rewname</p><br>";
                 }
-                if( $rewNumber != 0) {
+                if ($rewNumber != 0) {
                     $CeoRating = $totalCEORATE / $rewNumber;
                     $CompRating = $totalCOMPRATE / $rewNumber;
-                }
-                else{
+                } else {
                     $CeoRating = "";
                     $CompRating = "";
                 }
+
             }
 
         ?>
-        <div>
-            <h3>Company Rating</h3> <br /><br>
-            <p><?php echo $CompRating?></p>
-        </div>
-        <div>
-            <h3>CEO Rating</h3> <br /><br>
-            <p><?php echo $CeoRating?></p>
-        </div>
+        <?php
+            if(isset($_SESSION["disable"]) && $_SESSION["disable"] == "") {
+                echo(" <div><h3>Company Rating</h3> <br /><br><p>");
+                echo(round($CompRating, 1));
+                echo("</p></div><div><h3>CEO Rating</h3> <br /><br><p> ");
+                echo(round($CeoRating, 1));
+                echo("</p></div>");
+            }
+        ?>
+
 
 
 
@@ -199,7 +232,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" )
         <h2>Leave Review</h2>
         <form style="text-align: center" action="" method="post">
 
-            <select class="select" id="type" name="rtype" style="width: 100%;float: left" required>
+            <select class="select" id="type" name="rtype" style="width: 100%;float: left; height:5%" required>
                 <option disabled value="">Choose Type for Review</option>
                 <option value="Internship">Internship</option>
                 <option value="Full Time">Full Time</option>
