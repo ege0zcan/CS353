@@ -4,6 +4,7 @@ session_start();
 if (!empty($_SESSION))
 {
     $userID = $_SESSION["userID"];
+    $id = $_SESSION["idForTest"];
 
 }
 else
@@ -12,104 +13,76 @@ else
 }
 
 ?>
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <title>My Applications</title>
+    <meta charset="UTF-8">
+
+
+    <title>Create Application Test</title>
+
+    <header class="main-header">
+        <div class="nav">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Job Search</a></li>
+                <li><a href="#">Company Search</a></li>
+                <li><a class="active" href="#">My Applications</a></li>
+                <li><a href="#">My Profile</a></li>
+            </ul>
+        </div>
+        <br><br>
+    </header>
+
 </head>
 
 <body style="background-color:#dddfd4;">
-<header class="main-header">
-    <div class="nav">
-        <ul>
-            <li><a href="home.php">Home</a></li>
-            <li><a href="searchjob.php">Job Search</a></li>
-            <li><a href="companysearch2.php">Company Search</a></li>
-            <li><a class="active" href="#">My Applications</a></li>
-            <li><a href="myprofilework.php">My Profile</a></li>
-        </ul>
-    </div>
-</header>
-<br><br><br>
 
 <div class="row">
-    <div class="column4">
+    <div class="column"  style="margin-left:15%">
 
-        <form action="" method="GET">
+        <ol id="questionList">
             <?php
-            $sql = "SELECT * FROM job_offering NATURAL JOIN applies WHERE user_id = '$userID'";
-            $result = mysqli_query($db,$sql);
-            while($job = mysqli_fetch_object($result)){
-                $jobID = $job->offering_id;
-                $jobTitle = $job->job_title;
+                $sql = "SELECT * FROM application_test  WHERE offering_id ='". $_SESSION['idForTest'] ."'";
+                $result = mysqli_query($db, $sql);
+                while($question = mysqli_fetch_object($result)){
+                    $q = $question->question;
+                    echo( "            <li id=\"question\">");
+                    echo( "<p>Question:</p>");
+                    echo( "<p>$q</p>");
+                    echo("</li>");
+                }
+            ?>
+            <form  action="" method="POST">
 
-                echo(" <p><button name=\"submit\" type=\"submit\" value=$jobID> $jobTitle </button></p>");
+            <li id="question">
+                <p>Question:</p>
+                <input type="text" name="newQ" size="128"><br/><br/>
+            </li>
+
+            <button class="button" type = "submit" id="addButton" name="add" id="add" >Add Question</button> <br/>
+            </form>
+        </ol>
+
+        <?php
+            if($_SERVER["REQUEST_METHOD"] == "POST" ) {
+                if (isset($_POST['add'])) {
+                    $sql2 = "INSERT INTO application_test  VALUES(DEFAULT,'" . $_SESSION['idForTest'] . "','" . $_POST['newQ'] . "' )";
+                    $result = mysqli_query($db, $sql2);
+                    header("location: createTest.php");
+                }
             }
 
-            ?>
-        </form>
-
-        <div class="pagination">
-            <a href="#">&laquo;</a>
-            <a href="#">1</a>
-            <a href="#" class="active">2</a>
-            <a href="#">3</a>
-            <a href="#">4</a>
-            <a href="#">&raquo;</a>
-        </div>
-
+        ?>
+        <button type="submit" class="button" style="display: inline-block; height: 50px; margin-left: 25px; background-color: transparent; box-shadow:none; color: #173e43; "><a href="myjobscompany.php">BACK</a></button>
     </div>
 
-    <div class="column">
-
-        <div class="row">
-            <div class="column1">
-                <form action="" method="POST">
-                <?php
-                if(isset($_GET['submit'])) {
-                    $_SESSION['idForSolve'] = $_GET['submit'];
-                    echo("<div><h1 class=\"create\" style=\"display: inline-block; margin-left: 20px\">Job Details");
-                    $currentID = mysqli_real_escape_string($db, $_GET['submit']);
-                    $testSql = "SELECT * FROM application_test WHERE offering_id ='". $_GET['submit'] ."'";
-                    if($resultTest = mysqli_query($db,$testSql)){
-                        $rowcount = mysqli_num_rows($resultTest);
-                        if($rowcount > 0) {
-                            echo("<button name=\"test\" type=\"submit\" class=\"button\" style=\"display: inline-block; height: 50px;margin-left: 200px; font-size: 16px\">Solve Test</button>");
-                        }
-                    }
-                    echo("</h1> <br /></div>");
-                    $sql2 = "SELECT * FROM job_offering NATURAL JOIN applies WHERE offering_id ='". $_GET['submit'] ."'";
-                    if($result2 = mysqli_query($db, $sql2)){
-                        $selectedJob = mysqli_fetch_object($result2);
-                        $jobID = $selectedJob->user_id;
-                        $jobTitle = $selectedJob->job_title;
-                        $jobDesc = $selectedJob->details;
-                        $jobStatus = $selectedJob->status;
-                        echo("<h2 style=\"display: inline-block; margin-left: 20px\" >$jobTitle</h2>");
-                        echo("<p style=\"display: inline-block; margin-left: 20px\" >$jobDesc</p>");
-                        echo("<p style=\"display: inline-block; margin-left: 20px\" >$jobStatus</p>");
-                        echo("<a style=\"margin-left: 30px;\" href=\"home.html\"> Go to Company Profile</a>");
-
-                    }else{
-                        echo("NO ONE");
-                    }
-                }else{
-                    echo("<h2 >Please Choose a Job</h2>");
-                }
-                ?>
-                </form>
-                <?php
-                    if(isset($_POST['test'])){
-                        header("location: solveTest.php");
-                    }
-                ?>
-
-            </div>
-        </div>
-    </div>
 </div>
 
+<script type="text/javascript" src="../js/materialize.min.js"></script>
+
 </body>
+
 </html>
