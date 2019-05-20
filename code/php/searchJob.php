@@ -15,7 +15,7 @@ else
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <title>Search Job</title>
 </head>
 
@@ -50,13 +50,13 @@ else
 <?php
         if (isset($_GET['jobTitle']) || isset($_GET['location']) || isset($_GET['type'] )){
             if($_GET['jobTitle']!= "" && $_GET['location']!= "" && $_GET['type']!= "" ) {
-                $sql = "SELECT * FROM job_offering NATURAL JOIN comp_user NATURAL JOIN posts WHERE job_title LIKE '".$_GET['jobTitle']."%' & office_location LIKE '".$_GET['location']."%' & job_type LIKE '".$_GET['type']."'% ";
+                $sql = "SELECT * FROM job_offering NATURAL JOIN comp_user NATURAL JOIN posts WHERE job_title LIKE '".$_GET['jobTitle']."%' AND office_location LIKE '".$_GET['location']."%' AND job_type LIKE '".$_GET['type']."'% ";
             }else if($_GET['jobTitle']!= "" && $_GET['location']!= "" ) {
-                $sql = "SELECT * FROM job_offering NATURAL JOIN comp_user NATURAL JOIN posts WHERE job_title LIKE '".$_GET['jobTitle']."%' & office_location LIKE '".$_GET['location']."%' ";
+                $sql = "SELECT * FROM job_offering NATURAL JOIN comp_user NATURAL JOIN posts WHERE job_title LIKE '".$_GET['jobTitle']."%' AND office_location LIKE '".$_GET['location']."%' ";
             }else if($_GET['jobTitle']!= ""  && $_GET['type']!= "" ) {
-                $sql = "SELECT * FROM job_offering NATURAL JOIN comp_user NATURAL JOIN posts WHERE job_title LIKE '".$_GET['jobTitle']."%'  & job_type LIKE '".$_GET['type']."%' ";
+                $sql = "SELECT * FROM job_offering NATURAL JOIN comp_user NATURAL JOIN posts WHERE job_title LIKE '".$_GET['jobTitle']."%'  AND job_type LIKE '".$_GET['type']."%' ";
             }else if( $_GET['location']!= "" && $_GET['type'] != "" ){
-                $sql = "SELECT * FROM job_offering NATURAL JOIN comp_user NATURAL JOIN posts WHERE  & office_location LIKE '".$_GET['location']."%' & job_type LIKE '".$_GET['type']."%' ";
+                $sql = "SELECT * FROM job_offering NATURAL JOIN comp_user NATURAL JOIN posts WHERE  office_location LIKE '".$_GET['location']."%' AND job_type LIKE '".$_GET['type']."%' ";
             }else if( $_GET['jobTitle']!= ""  ) {
                 $sql = "SELECT * FROM job_offering NATURAL JOIN comp_user NATURAL JOIN posts WHERE job_title LIKE '".$_GET['jobTitle']."%' ";
             }else if($_GET['location']!= "") {
@@ -66,7 +66,6 @@ else
             }else{
                 $sql = "SELECT * FROM job_offering NATURAL JOIN comp_user NATURAL JOIN posts ";
             }
-
             $result = mysqli_query($db, $sql);
             while($job = mysqli_fetch_object($result)){
 
@@ -79,7 +78,7 @@ else
         }
 
     ?>
-    </form>
+
         <div class="pagination">
             <a href="#">&laquo;</a>
             <a href="#">1</a>
@@ -93,13 +92,16 @@ else
 
     <div class="column">
         <h1 class="create" style="display: inline-block; margin-left: 20px">Job Details</h1>
-        <button class="button" style="display: inline-block; height: 50px;margin-left: 475px; font-size: 16px">Apply</button>
+
+        <button class="button" type = "submit" name="apply" style="display: inline-block; height: 50px;margin-left: 475px; font-size: 16px">Apply</button>
+</form>
         <a style="margin-left: 30px;" href="home.html">Company Profile</a>
         <div class="row">
             <div class="column1">
                 <?php
-                if($_SERVER["REQUEST_METHOD"] == "POST"){
+                if(isset($_POST['submit'])){
                     $ID = $_POST["submit"];
+                    $_SESSION['curjobID'] = $ID;
                     $sql2 = "SELECT * FROM job_offering NATURAL JOIN comp_user NATURAL JOIN posts WHERE offering_ID = $ID";
                     $result2 = mysqli_query($db, $sql2);
                     if( $offering = mysqli_fetch_object($result2)){
@@ -112,8 +114,17 @@ else
                         $desc = $offering->description;
                         echo("<p style=\"display: inline-block; margin-left: 20px;\">JOB TITLE: $title Department: $dept Type: $type Location: $location Details: $details Company Name: $name Description: $desc </p>");
                     }
-
-
+                }
+                if(isset($_POST['apply'])){
+                    $ID = $_SESSION['curjobID'];
+                    $sql3 = "INSERT INTO applies VALUES ($userID,$ID,\"PENDING\")";
+                    $result3 = mysqli_query($db, $sql3);
+                    if (!$result3){
+                        echo ( "<p> You already applied for this job offering.</p>");
+                    }else{
+                        echo ( "<p> Your application is succefully sent.</p>");
+                        echo ( "<p> Please Check My Applications Page.</p>");
+                    }
                 }
                 ?>
             </div>
