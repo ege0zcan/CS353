@@ -1,4 +1,3 @@
-
 <?php
 include("config.php");
 session_start();
@@ -17,7 +16,7 @@ else
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <title>My Applications</title>
 </head>
 
@@ -27,7 +26,7 @@ else
         <ul>
             <li><a href="home.php">Home</a></li>
             <li><a href="searchjob.php">Job Search</a></li>
-            <li><a href="companysearch.php">Company Search</a></li>
+            <li><a href="companysearch2.php">Company Search</a></li>
             <li><a class="active" href="#">My Applications</a></li>
             <li><a href="myprofilework.php">My Profile</a></li>
         </ul>
@@ -67,20 +66,22 @@ else
 
         <div class="row">
             <div class="column1">
+                <form action="" method="POST">
                 <?php
                 if(isset($_GET['submit'])) {
+                    $_SESSION['idForSolve'] = $_GET['submit'];
                     echo("<div><h1 class=\"create\" style=\"display: inline-block; margin-left: 20px\">Job Details");
                     $currentID = mysqli_real_escape_string($db, $_GET['submit']);
-                    $testSql = "SELECT * FROM has_test WHERE offering_id ='". $_GET['submit'] ."'";
+                    $testSql = "SELECT * FROM application_test WHERE offering_id ='". $_GET['submit'] ."'";
                     if($resultTest = mysqli_query($db,$testSql)){
                         $rowcount = mysqli_num_rows($resultTest);
                         if($rowcount > 0) {
-                            echo("<button class=\"button\" style=\"display: inline-block; height: 50px;margin-left: 200px; font-size: 16px\">Solve Test</button>");
+                            echo("<button name=\"test\" type=\"submit\" class=\"button\" style=\"display: inline-block; height: 50px;margin-left: 200px; font-size: 16px\">Solve Test</button>");
                         }
                     }
                     echo("</h1> <br /></div>");
                     $sql2 = "SELECT * FROM job_offering NATURAL JOIN applies WHERE offering_id ='". $_GET['submit'] ."'";
-                    if($result2 = mysqli_query($db, $sql2)) {
+                    if($result2 = mysqli_query($db, $sql2)){
                         $selectedJob = mysqli_fetch_object($result2);
                         $jobID = $selectedJob->user_id;
                         $jobTitle = $selectedJob->job_title;
@@ -98,6 +99,13 @@ else
                     echo("<h2 >Please Choose a Job</h2>");
                 }
                 ?>
+                </form>
+                <?php
+                    if(isset($_POST['test'])){
+                        header("location: solveTest.php");
+                    }
+                ?>
+
             </div>
         </div>
     </div>
