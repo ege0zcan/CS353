@@ -271,8 +271,11 @@ public class connection {
                 "user_id INT," +
                 "FOREIGN KEY(user_id) REFERENCES work_user (user_id)\n" +
                 "ON DELETE CASCADE," +
+                "question_id INT," +
+                "FOREIGN KEY (question_id) REFERENCES application_test (question_id)\n" +
+                "ON DELETE CASCADE," +
                 "answers VARCHAR(32)," +
-                "PRIMARY KEY(offering_id,user_id)" +
+                "PRIMARY KEY(offering_id,user_id, question_id)" +
                 ")engine=InnoDB;"
         );
         statement.executeUpdate("CREATE TABLE posts(" +
