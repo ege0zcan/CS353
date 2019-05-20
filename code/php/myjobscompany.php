@@ -13,7 +13,7 @@ else
 
 ?>
 
-/////////////////////////////////////////
+
 <html>
 <head>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
@@ -25,7 +25,7 @@ else
 <header class="main-header">
     <div class="nav">
         <ul>
-            <li><a href="home.php">Home</a></li>
+            <li><a href="myreviews.php">My Reviews</a></li>
             <li><a href="createjob.php">Create Job</a></li>
             <li><a class="active" href="#">My Jobs</a></li>
             <li><a href="myprofilecompany.php">My Profile</a></li>
@@ -101,9 +101,7 @@ else
                     }
                 ?>
             </div>
-            <div class="column" style="height: 300px;">
-                <p>Test Answers</p>
-            </div>
+
         </div>
     </div>
 </div>
