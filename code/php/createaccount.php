@@ -63,7 +63,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
             echo "<script>alert('PLEASE ENTER A VALID NAME AND SURNAME')</script>";
 
         }else{
-            $sql = "INSERT INTO general_user (email, password, phone_no, reg_date, pp_link) VALUES ('$email', '$password', '$phoneno', '$date', '')";
+            $sql = "CALL createUser('$email', '$password', '$phoneno', '$date')";
+            echo $sql;
             $result2 = mysqli_query($db,$sql);
 
             //  echo $result2;
@@ -88,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
                 echo "<script>alert('PLEASE ENTER A VALID ADRESS')</script>";
             }else
 
-                $sql = "INSERT INTO general_user (email, password, phone_no, reg_date, pp_link) VALUES ('$email', '$password', '$phoneno', '$date', '')";
+                $sql = "CALL createUser('$email', '$password', '$phoneno', '$date')";
             $result2 = mysqli_query($db,$sql);
             if( $result2 == 1) {
                 $getId = "SELECT user_ID FROM general_user WHERE email = '$email'";
