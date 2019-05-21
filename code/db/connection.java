@@ -17,46 +17,92 @@ public class connection {
             statement = conn.createStatement();
             createTables();
             addEntries();
+            statement.executeUpdate("DROP PROCEDURE IF EXISTS `createUser` ");
+            statement.executeUpdate("CREATE PROCEDURE createUser(IN inemail VARCHAR(30), IN inpass VARCHAR(30), IN inphone_no VARCHAR(30)) NOT DETERMINISTIC NO SQL SQL SECURITY DEFINER BEGIN INSERT INTO general_user (email, password, phone_no, reg_date, pp_link) VALUES (inemail, inpass, inphone_no, DEFAULT, DEFAULT); END\n");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     private static void addEntries() throws SQLException{
-        statement.executeUpdate("insert into general_user values(1,\"tam35@mail.com\",\"1234\",\"3535353535\",DEFAULT,\"http://img7.bdbphotos.com/images/huge/w/d/wdd4fqg0265zzg60.jpg?djet1p5k\");");
-        statement.executeUpdate("insert into work_user values(1,\"Robert Plant\", \"Musician\", \"I was a member of Led Zeppelin\", \"Jumping\",\"Heaven Apt\",\"Stairway Sokak\",\"Kashmir\",\"Izmir\",\"Turkey\",35121);");
-        statement.executeUpdate("insert into general_user values(2,\"gasper@mail.com\",\"1234\",\"3535312635\",DEFAULT,\"http://tr.web.img4.acsta.net/c_215_290/medias/nmedia/18/94/69/75/20349187.jpg\");");
-        statement.executeUpdate("insert into work_user values(2,\"Gasper Noe\", \"Director\", \"Enter the Void \nIrreversible\nLove\nClimax\", \"Puff\",\"Void Apt\",\"Climax Sokak\",\" Irreversible\",\"Buenos Aires\",\"Argentina\",35121);");
-        statement.executeUpdate("insert into general_user values(3,\"50cent@mail.com\",\"1234\",\"353523515\",DEFAULT,\"https://static.hiphopdx.com/2017/11/171128-G-Unit-Getty-Images-800x600.jpg\");");
-        statement.executeUpdate("insert into comp_user values(3,\"G-Unit\", \"RAPPER\");");
-        statement.executeUpdate("insert into location values(3,\"Gangsta Apt\",\"palmiye Sokak\",\"balcova\",\"Izmir\",\"Turkey\",16241,1);");
-        statement.executeUpdate("insert into location values(3,\"Tren Apt\",\"Lider Sokak\",\"Yoa chi\",\"Tokyo\",\"Japon\",12451,0);");
+        statement.executeUpdate("insert into general_user values(1,\"robert@mail.com\",\"1234\",\"+12483547256\",DEFAULT,\"http://img7.bdbphotos.com/images/huge/w/d/wdd4fqg0265zzg60.jpg?djet1p5k\");");
+        statement.executeUpdate("insert into work_user values(1,\"Robert Plant\", \"Musician\", \"I was a member of Led Zeppelin\", \"Jumping\",\"Heaven Apt\",\"Stairway Road\",\"Kashmir\",\"Izmir\",\"Turkey\",35121);");
+
+        statement.executeUpdate("insert into general_user values(2,\"gasper@mail.com\",\"1234\",\"+3535312635\",DEFAULT,\"http://tr.web.img4.acsta.net/c_215_290/medias/nmedia/18/94/69/75/20349187.jpg\");");
+        statement.executeUpdate("insert into work_user values(2,\"Gasper Noe\", \"Director\", \"Enter the Void \nIrreversible\nLove\nClimax\", \"Puff\",\"Void Apt\",\"Climax Road\",\" Irrever\",\"Buenos Aires\",\"Argentina\",35121);");
+
+        statement.executeUpdate("insert into general_user values(3,\"Osman@mail.com\",\"1234\",\"+9083547256\",DEFAULT,\"http://img7.bdbphotos.com/images/huge/w/d/wdd4fqg0265zzg60.jpg?djet1p5k\");");
+        statement.executeUpdate("insert into work_user values(3,\"Osman Cetin\", \"Civil Engineer\", \"New Graduated\", \"Hiking\",\"Umut Apt\",\"Lale Sokak\",\"Konak\",\"Izmir\",\"Turkey\",3520151);");
+
+        statement.executeUpdate("insert into general_user values(4,\"Sacit@mail.com\",\"1234\",\"+905427658256\",DEFAULT,\"http://img7.bdbphotos.com/images/huge/w/d/wdd4fqg0265zzg60.jpg?djet1p5k\");");
+        statement.executeUpdate("insert into work_user values(4,\"Sacit Kiral\", \"Muhallebici\", \"Sutcuoglu muhallebicisi yoneticiligi\", \"Gambling\",\"Sutcuoglu Apt\",\"sanat Sokak\",\"Nisantasi\",\"Istanbul\",\"Turkey\",35209);");
+
+        statement.executeUpdate("insert into general_user values(5,\"John@mail.com\",\"1234\",\"+50542558256\",DEFAULT,\"http://img7.bdbphotos.com/images/huge/w/d/wdd4fqg0265zzg60.jpg?djet1p5k\");");
+        statement.executeUpdate("insert into work_user values(5,\"John Bon\", \"Software Developer\", \"Project manager at softsoft\", \"Bridge\",\"43. Apt\",\"4/3 Road\",\"luqoa\",\"Menchmo\",\"Qatar\",35225);");
+
+        statement.executeUpdate("insert into general_user values(6,\"itori@mail.com\",\"1234\",\"+705427658256\",DEFAULT,\"http://img7.bdbphotos.com/images/huge/w/d/wdd4fqg0265zzg60.jpg?djet1p5k\");");
+        statement.executeUpdate("insert into work_user values(6,\"Li Itori\", \"Architect\", \"I made lots of buildings\", \"Bridge\",\"qua Apt\",\"yoi Road\",\"chia\",\"Tokyo\",\"Japan\",1521);");
+
+        statement.executeUpdate("insert into general_user values(7,\"makesoft@mail.com\",\"1234\",\"+5233523515\",DEFAULT,\"https://www.graphicsprings.com/filestorage/stencils/fef1c295c28fa66259d253156c63a459.svg\");");
+        statement.executeUpdate("insert into comp_user values(7,\"Make Soft\", \"Software development\");");
+
+        statement.executeUpdate("insert into general_user values(8,\"50cent@mail.com\",\"1234\",\"+353523515\",DEFAULT,\"https://static.hiphopdx.com/2017/11/171128-G-Unit-Getty-Images-800x600.jpg\");");
+        statement.executeUpdate("insert into comp_user values(8,\"G-Unit\", \"RAPPER\");");
+
+        statement.executeUpdate("insert into general_user values(9,\"Wan@mail.com\",\"1234\",\"+15262414\",DEFAULT,\"https://static.hiphopdx.com/2017/11/171128-G-Unit-Getty-Images-800x600.jpg\");");
+        statement.executeUpdate("insert into comp_user values(9,\"Wan\", \"Music Producer\");");
+
+        statement.executeUpdate("insert into location values(7,\"albe Apt\",\"savea Sokak\",\"petio\",\"Athens\",\"Greece\",16241,1);");
+        statement.executeUpdate("insert into location values(7,\"Tren Apt\",\"leae Sokak\",\"Yoa chi\",\"Tokyo\",\"Japan\",12451,0);");
+
+        statement.executeUpdate("insert into location values(8,\"Gangsta Apt\",\"goztepe Sokak\",\"balcova\",\"Izmir\",\"Turkey\",16241,1);");
+        statement.executeUpdate("insert into location values(8,\"Tren Apt\",\"Lider Sokak\",\"Bilkent\",\"Ankara\",\"Turkey\",12451,0);");
+
+        statement.executeUpdate("insert into location values(9,\"ata Apt\",\"beaq Sokak\",\"yves\",\"paris\",\"France\",16241,1);");
+        statement.executeUpdate("insert into location values(9,\"VEAN Apt\",\"sheq Sokak\",\"parve\",\"Prag\",\"Czech\",12451,0);");
+
         //picture
-        statement.executeUpdate("insert into picture values(3,\"https://picsum.photos/id/0/5616/3744\",DEFAULT,\"Muthis foto\");");
-        statement.executeUpdate("insert into picture values(3,\"https://picsum.photos/id/1/5616/3744\",DEFAULT,\"Muthis  foto\");");
-        statement.executeUpdate("insert into picture values(3,\"https://picsum.photos/id/25/5616/3744\",DEFAULT,\"Muthis  foto\");");
-        statement.executeUpdate("insert into picture values(3,\"https://picsum.photos/id/11/5616/3744\",DEFAULT,\"Muthis  foto\");");
-        statement.executeUpdate("insert into picture values(3,\"https://picsum.photos/id/4/5616/3744\",DEFAULT,\"Muthis  foto\");");
-        statement.executeUpdate("insert into picture values(3,\"https://picsum.photos/id/5/5616/3744\",DEFAULT,\"Muthis  foto\");");
-        statement.executeUpdate("insert into picture values(3,\"https://picsum.photos/id/6/5616/3744\",DEFAULT,\"Muthis  foto\");");
-        statement.executeUpdate("insert into picture values(3,\"https://picsum.photos/id/7/5616/3744\",DEFAULT,\"Muthis  foto\");");
-        statement.executeUpdate("insert into picture values(3,\"https://picsum.photos/id/8/5616/3744\",DEFAULT,\"Muthis  foto\");");
-        statement.executeUpdate("insert into picture values(3,\"https://picsum.photos/id/9/5616/3744\",DEFAULT,\"Muthis  foto\");");
-        statement.executeUpdate("insert into picture values(3,\"https://picsum.photos/id/10/5616/3744\",DEFAULT,\"Muthis  foto\");");
+        statement.executeUpdate("insert into picture values(7,\"https://picsum.photos/id/0/5616/3744\",DEFAULT,\"Muthis foto\");");
+        statement.executeUpdate("insert into picture values(7,\"https://picsum.photos/id/1/5616/3744\",DEFAULT,\"Muthis  foto\");");
+        statement.executeUpdate("insert into picture values(7,\"https://picsum.photos/id/25/5616/3744\",DEFAULT,\"Muthis  foto\");");
+        statement.executeUpdate("insert into picture values(8,\"https://picsum.photos/id/11/5616/3744\",DEFAULT,\"Muthis  foto\");");
+        statement.executeUpdate("insert into picture values(8,\"https://picsum.photos/id/4/5616/3744\",DEFAULT,\"Muthis  foto\");");
+        statement.executeUpdate("insert into picture values(8,\"https://picsum.photos/id/5/5616/3744\",DEFAULT,\"Muthis  foto\");");
+        statement.executeUpdate("insert into picture values(8,\"https://picsum.photos/id/6/5616/3744\",DEFAULT,\"Muthis  foto\");");
+        statement.executeUpdate("insert into picture values(8,\"https://picsum.photos/id/7/5616/3744\",DEFAULT,\"Muthis  foto\");");
+        statement.executeUpdate("insert into picture values(9,\"https://picsum.photos/id/8/5616/3744\",DEFAULT,\"Muthis  foto\");");
+        statement.executeUpdate("insert into picture values(9,\"https://picsum.photos/id/9/5616/3744\",DEFAULT,\"Muthis  foto\");");
+        statement.executeUpdate("insert into picture values(9,\"https://picsum.photos/id/10/5616/3744\",DEFAULT,\"Muthis  foto\");");
         //Job offering
-        statement.executeUpdate("INSERT INTO job_offering values (DEFAULT,DEFAULT, 'Amelelik', 'Santiye', 'Isci', 'Izmir', 'Tugla Tasi')");
-        statement.executeUpdate("insert into posts values(1,3)");
-        statement.executeUpdate("INSERT INTO job_offering values (DEFAULT,DEFAULT, 'Temizleyici', 'hastane', 'temizlik', 'Yozgat', 'sil supur')");
-        statement.executeUpdate("insert into posts values(2,3)");
+        statement.executeUpdate("INSERT INTO job_offering values (DEFAULT,DEFAULT, 'Amelelik', 'Santiye', 'Full Time', 'Athens', 'Tugla Tasi')");
+        statement.executeUpdate("insert into posts values(1,7)");
+        statement.executeUpdate("INSERT INTO job_offering values (DEFAULT,DEFAULT, 'Temizleyici', 'hastane', 'Full Time', 'Tokyo', 'sil supur')");
+        statement.executeUpdate("insert into posts values(2,7)");
+        statement.executeUpdate("INSERT INTO job_offering values (DEFAULT,DEFAULT, 'Software developer', 'Part Time', 'Developer', 'Izmir', 'Front-end developer')");
+        statement.executeUpdate("insert into posts values(3,8)");
+        statement.executeUpdate("INSERT INTO job_offering values (DEFAULT,DEFAULT, 'Cayci', 'Office worker', 'Internship', 'Ankara', 'cay koy')");
+        statement.executeUpdate("insert into posts values(4,8)");
+        statement.executeUpdate("INSERT INTO job_offering values (DEFAULT,DEFAULT, 'Guitarist', 'Studio worker', 'Part Time', 'Paris', 'Play Guitar')");
+        statement.executeUpdate("insert into posts values(5,9)");
+
         //Job applies
-        statement.executeUpdate("insert into applies values(1,1,'Pending')");
-        statement.executeUpdate("insert into applies values(2,1,'Accepted')");
-        statement.executeUpdate("insert into applies values(2,2,'Rejected')");
+        statement.executeUpdate("insert into applies values(1,1,'Waiting')");
+        statement.executeUpdate("insert into applies values(1,3,'Accepted')");
+        statement.executeUpdate("insert into applies values(2,3,'Rejected')");
+        statement.executeUpdate("insert into applies values(5,1,'Waiting')");
+        statement.executeUpdate("insert into applies values(6,1,'Accepted')");
+        statement.executeUpdate("insert into applies values(4,5,'Rejected')");
         //Add Application Test
         statement.executeUpdate("insert into application_test values(1,1,'What is your Name?');");
         statement.executeUpdate("insert into application_test values(2,1,'Where are you from?');");
         //Add Review
-        statement.executeUpdate("INSERT INTO `review` (`review_id`, `anonymity`, `type`, `review_text`, `comp_rating`, `ceo_rating`, `interview_info`, `salary_info`, `office_location`, `user_id`, `comp_id`, `date`) VALUES (NULL, '0', 'Internship', 'Güzel Şirket', 5, 5, 'Kolay', '1500₺', 'Izmir', 1, 3, CURRENT_TIMESTAMP);");
-        statement.executeUpdate("INSERT INTO `review` (`review_id`, `anonymity`, `type`, `review_text`, `comp_rating`, `ceo_rating`, `interview_info`, `salary_info`, `office_location`, `user_id`, `comp_id`, `date`) VALUES (NULL, '0', 'Full Time', 'nice', 4, 4, 'EZ', '4000₺', 'Izmir', 2, 3, CURRENT_TIMESTAMP);");
+        statement.executeUpdate("INSERT INTO `review` (`review_id`, `anonymity`, `type`, `review_text`, `comp_rating`, `ceo_rating`, `interview_info`, `salary_info`, `office_location`, `user_id`, `comp_id`, `date`) VALUES (NULL, '0', 'Internship', 'Guzel Sirket', 5, 5, 'Kolay', '2000$', 'Athens', 1, 7, CURRENT_TIMESTAMP);");
+        statement.executeUpdate("INSERT INTO `review` (`review_id`, `anonymity`, `type`, `review_text`, `comp_rating`, `ceo_rating`, `interview_info`, `salary_info`, `office_location`, `user_id`, `comp_id`, `date`) VALUES (NULL, '0', 'Full Time', 'nice', 4, 4, 'Easy', '4000$', 'Tokyo', 2, 7, CURRENT_TIMESTAMP);");
+        statement.executeUpdate("INSERT INTO `review` (`review_id`, `anonymity`, `type`, `review_text`, `comp_rating`, `ceo_rating`, `interview_info`, `salary_info`, `office_location`, `user_id`, `comp_id`, `date`) VALUES (NULL, '1', 'Internship', 'Not bad', 3, 5, 'No Interview', '1500₺', 'Izmir', 1, 8, CURRENT_TIMESTAMP);");
+        statement.executeUpdate("INSERT INTO `review` (`review_id`, `anonymity`, `type`, `review_text`, `comp_rating`, `ceo_rating`, `interview_info`, `salary_info`, `office_location`, `user_id`, `comp_id`, `date`) VALUES (NULL, '0', 'Internship', 'I love them', 5, 4, 'Kolay', '1500₺', 'Izmir', 5, 8, CURRENT_TIMESTAMP);");
+        statement.executeUpdate("INSERT INTO `review` (`review_id`, `anonymity`, `type`, `review_text`, `comp_rating`, `ceo_rating`, `interview_info`, `salary_info`, `office_location`, `user_id`, `comp_id`, `date`) VALUES (NULL, '0', 'Part Time', 'Best place', 5, 3, 'Kolay', '4000$', 'Paris', 5, 9, CURRENT_TIMESTAMP);");
+        //Add Admin
+        statement.executeUpdate("INSERT INTO `admin`(`admin_id`, `password`, `email`) VALUES (1,'1234','admin@mail.com')");
+
     }
     private static void createTables() throws SQLException {
 
